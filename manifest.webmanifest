@@ -1,0 +1,10 @@
+{
+  "name": "Stillwater \u2014 Spiritual Companion",
+  "short_name": "Stillwater",
+  "description": "A peaceful Christian spiritual companion for Scripture, prayer and devotion.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#06152b",
+  "theme_color": "#07162e",
+  "icons": []
+}

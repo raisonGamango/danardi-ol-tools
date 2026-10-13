@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07162e">
+<meta name="description" content="Stillwater — a peaceful Christian spiritual companion for Scripture, prayer, devotion and daily faith.">
+<title>Stillwater — Your Spiritual Companion</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--night:#06152b;--blue:#0c2b50;--gold:#ffd779;--gold2:#f4b936;--white:#fffaf0;--muted:#c6d5e7;--glass:rgba(8,26,49,.68);--line:rgba(255,221,145,.28);--shadow:0 18px 50px #020b1a70}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--night);color:var(--white);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 75% 5%,#194d7b 0,transparent 40%),linear-gradient(145deg,#061329,#0b2c4d 55%,#06162b)}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.28;animation:float 12s ease-in-out infinite}
+.orb.one{width:300px;height:300px;top:10%;left:-140px;background:#1c8c9d}.orb.two{width:220px;height:220px;right:-100px;top:50%;background:#d99b34;animation-delay:-5s}
+.sparkles{position:absolute;inset:0;background-image:radial-gradient(#ffe4a0 1px,transparent 1.8px),radial-gradient(#d6eaff 1px,transparent 1.8px);background-size:113px 113px,173px 173px;background-position:0 0,50px 70px;opacity:.2;animation:twinkle 6s ease-in-out infinite alternate}
+.wrap{width:min(1200px,calc(100% - 40px));margin:auto}
+header{height:86px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;z-index:5}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white)}
+.brand-mark{width:46px;height:46px;border:1px solid #ffe3a0;border-radius:15px;display:grid;place-items:center;color:var(--gold);font-size:28px;background:linear-gradient(145deg,#fff3c72b,#ffd15b08);box-shadow:0 0 25px #ffc94b28}
+.brand-name{font:600 1.55rem "Playfair Display",serif;letter-spacing:.01em}.brand-sub{font-size:.68rem;color:#c6d5e7;letter-spacing:.13em;text-transform:uppercase;margin-top:1px}
+.nav{display:flex;align-items:center;gap:7px}.nav a,.nav button{color:#eaf1fb;text-decoration:none;border:0;background:transparent;font:600 .88rem "DM Sans",sans-serif;padding:11px 14px;border-radius:99px;cursor:pointer;transition:.25s}
+.nav a:hover,.nav a.active,.nav button:hover{background:#ffffff17;color:var(--gold)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #ffe7a2;border-radius:99px;padding:13px 20px;background:linear-gradient(120deg,#ffe8a3,#f7bd44);color:#172039;text-decoration:none;font-weight:800;box-shadow:0 8px 30px #ffc94b30;transition:transform .25s,box-shadow .25s;cursor:pointer}
+.pill:hover{transform:translateY(-3px);box-shadow:0 12px 35px #ffc94b55}.pill.secondary{background:#ffffff0b;color:var(--white);border-color:#ffffff38;box-shadow:none}
+.hero{min-height:490px;display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:30px;padding:42px 0 55px;position:relative}
+.hero-copy{position:relative;z-index:2;animation:rise .9s both}.eyebrow{display:flex;align-items:center;gap:10px;text-transform:uppercase;font-size:.72rem;font-weight:800;letter-spacing:.2em;color:var(--gold);margin-bottom:20px}.eyebrow:before{content:"";height:1px;width:32px;background:var(--gold)}
+h1,h2,h3,p{margin-top:0}h1{font:500 clamp(3.1rem,6vw,5.5rem)/.98 "Playfair Display",serif;letter-spacing:-.045em;margin-bottom:16px}h1 em{color:var(--gold);font-weight:500}
+.hero-lead{font-size:1.05rem;line-height:1.8;color:#d7e3f1;max-width:530px;margin-bottom:27px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.mini-note{font-size:.78rem;color:#b9cbe0;margin-top:20px}
+.hero-art{min-height:380px;position:relative;border-radius:34px;overflow:hidden;border:1px solid #ffe4a033;box-shadow:var(--shadow);background:linear-gradient(90deg,#06152b35,#06152b00),url('assets/sunrise-cross.jpg') center/cover;animation:fadeIn 1.3s both}
+.hero-art:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#06152be8 0%,transparent 58%),linear-gradient(90deg,#06152b48,transparent 75%)}
+.hero-art:after{content:"";position:absolute;inset:12px;border:1px solid #ffe6ad4a;border-radius:25px;pointer-events:none}
+.verse-card{position:absolute;left:22px;right:22px;bottom:22px;padding:22px 23px;background:rgba(4,18,37,.64);border:1px solid #fff4d33b;border-radius:20px;backdrop-filter:blur(12px);z-index:1;animation:rise 1.1s .2s both}
+.verse-mark{font:3rem "Playfair Display",serif;line-height:.8;color:var(--gold)}.verse-card blockquote{font:italic 1.3rem/1.45 "Playfair Display",serif;margin:8px 0 11px}.verse-card cite{font-style:normal;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.light-ray{position:absolute;width:200px;height:200px;border-radius:50%;background:#ffe6a4;filter:blur(65px);opacity:.24;right:16%;top:8%;animation:breathe 5s infinite alternate}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:15px 0 22px}.section-title h2{font:500 clamp(1.8rem,3vw,2.5rem) "Playfair Display",serif;margin-bottom:7px}.section-title h2 em{color:var(--gold)}.section-title p{color:var(--muted);margin:0;line-height:1.6}.count{font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:#c8d6e5;white-space:nowrap}
+.menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.tile{--accent:#ffdc86;--tint:#ffc84a18;position:relative;min-height:205px;aspect-ratio:1/1;border:1px solid color-mix(in srgb,var(--accent),transparent 58%);border-radius:23px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;color:var(--white);text-decoration:none;background:linear-gradient(145deg,var(--tint),#ffffff05 55%),rgba(7,24,45,.76);box-shadow:0 8px 24px #020b1a25;overflow:hidden;isolation:isolate;cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s;animation:rise .7s both}
+.tile:before{content:"";position:absolute;z-index:-1;width:150px;height:150px;right:-75px;top:-85px;border-radius:50%;background:var(--accent);opacity:.11;transition:transform .5s,opacity .5s}
+.tile:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:scaleX(.2);opacity:0;transition:.35s}
+.tile:hover,.tile:focus-visible{transform:translateY(-7px) scale(1.015);border-color:var(--accent);box-shadow:0 18px 40px #02091680,0 0 22px color-mix(in srgb,var(--accent),transparent 84%);outline:none}
+.tile:hover:before{transform:scale(1.7);opacity:.2}.tile:hover:after{transform:scaleX(1);opacity:1}
+.tile-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.number{font-size:.72rem;font-weight:800;letter-spacing:.13em;color:#c0cfe0}.icon{width:53px;height:53px;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--accent),transparent 50%);border-radius:17px;background:color-mix(in srgb,var(--accent),transparent 88%);font-size:25px;box-shadow:inset 0 0 20px color-mix(in srgb,var(--accent),transparent 92%);transition:transform .4s}.tile:hover .icon{transform:rotate(-8deg) scale(1.08)}
+.tile h3{font:600 1.28rem "Playfair Display",serif;margin:17px 0 7px}.tile p{font-size:.82rem;line-height:1.55;color:#c3d2e2;margin:0;max-width:220px}.arrow{position:absolute;right:17px;bottom:17px;color:var(--accent);font-size:1.2rem;transition:transform .3s}.tile:hover .arrow{transform:translate(4px,-4px)}
+.reflection{margin:28px 0 20px;border:1px solid #f4d58c3d;border-radius:23px;padding:25px 30px;display:flex;align-items:center;gap:20px;background:linear-gradient(100deg,#f6c75d14,#ffffff07,#64a4d00d);position:relative;overflow:hidden}.reflection:after{content:"✝";font-size:8rem;position:absolute;right:25px;top:-24px;color:#ffdc8620;font-family:serif}.reflection-icon{width:54px;height:54px;flex:0 0 54px;border-radius:50%;display:grid;place-items:center;background:#ffd77919;border:1px solid #ffd7795c;color:var(--gold);font-size:25px}.reflection p{font:italic 1.2rem/1.6 "Playfair Display",serif;margin:0;position:relative;z-index:1}.reflection small{display:block;margin-top:7px;color:var(--gold);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase}
+footer{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding:23px 0 28px;border-top:1px solid #ffffff17;color:#9fb3c9;font-size:.78rem}.footer-brand{font:600 1.15rem "Playfair Display",serif;color:#fff1ce}.footer-links{display:flex;gap:17px;flex-wrap:wrap}.footer-links a{color:#b7c7d9;text-decoration:none}.footer-links a:hover{color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,25px);opacity:0;pointer-events:none;z-index:20;background:#fff3d1;color:#172039;padding:13px 19px;border-radius:14px;box-shadow:var(--shadow);font-size:.9rem;font-weight:700;transition:.3s;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal-backdrop{position:fixed;inset:0;z-index:30;background:#020817b8;backdrop-filter:blur(9px);display:none;align-items:center;justify-content:center;padding:20px}.modal-backdrop.open{display:flex;animation:fadeIn .2s}.modal{width:min(520px,100%);padding:28px;border:1px solid #f6d99155;border-radius:25px;background:linear-gradient(145deg,#102d4c,#07172d);box-shadow:var(--shadow);position:relative;animation:rise .3s}.modal .close{position:absolute;right:16px;top:15px;border:1px solid #ffffff24;border-radius:50%;width:36px;height:36px;background:#ffffff0b;color:white;font-size:1.2rem;cursor:pointer}.modal .modal-icon{font-size:2.2rem;color:var(--gold)}.modal h2{font:500 2rem "Playfair Display",serif;margin:12px 0}.modal p{color:#d0ddec;line-height:1.7}.modal .verse{padding:15px;border-left:2px solid var(--gold);background:#ffffff08;font:italic 1.05rem/1.6 "Playfair Display",serif;margin:18px 0}.modal textarea{width:100%;min-height:95px;resize:vertical;border-radius:12px;border:1px solid #ffffff2b;background:#06152b;color:white;padding:12px;font:inherit}.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-35px)}}@keyframes twinkle{from{opacity:.1}to{opacity:.28}}@keyframes breathe{from{transform:scale(.8);opacity:.12}to{transform:scale(1.25);opacity:.3}}
+@media(max-width:900px){.nav a:not(.keep),.nav button{display:none}.hero{grid-template-columns:1fr .85fr;gap:20px}.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tile{min-height:190px;padding:17px}.hero-art{min-height:350px}}
+@media(max-width:650px){.wrap{width:calc(100% - 28px)}header{height:74px}.brand-name{font-size:1.25rem}.brand-mark{width:40px;height:40px}.nav .pill{display:inline-flex;padding:10px 13px;font-size:.78rem}.hero{grid-template-columns:1fr;padding:35px 0 35px;gap:25px}.hero h1{font-size:clamp(3rem,13vw,4.4rem)}.hero-art{min-height:310px}.section-title{align-items:flex-start;flex-direction:column}.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.tile{aspect-ratio:1/1;min-height:0;border-radius:18px;padding:14px}.icon{width:44px;height:44px;border-radius:14px;font-size:22px}.tile h3{font-size:1.08rem;margin-top:13px}.tile p{font-size:.75rem;padding-right:4px}.arrow{right:12px;bottom:10px}.reflection{padding:19px;align-items:flex-start}.reflection p{font-size:1.05rem}.reflection:after{right:-10px;top:10px;font-size:5rem}.count{font-size:.7rem}footer{align-items:flex-start;flex-direction:column}}
+@media(max-width:360px){.menu-grid{gap:8px}.tile{padding:11px}.tile h3{font-size:1rem}.tile p{font-size:.7rem}.number{font-size:.64rem}.icon{width:39px;height:39px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><div class="sparkles"></div><div class="orb one"></div><div class="orb two"></div></div>
+<div class="wrap">
+<header>
+  <a class="brand" href="#" aria-label="Stillwater home"><span class="brand-mark">✝</span><span><span class="brand-name">Stillwater</span><span class="brand-sub" style="display:block">Spiritual Companion</span></span></a>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="active" href="#home">Home</a><a href="#explore">Explore</a><a href="#reflection">Reflection</a>
+    <button class="pill" id="headerPrayer" type="button">✧ Walk with God</button>
+  </nav>
+</header>
+<main id="home">
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Daily Bible · Prayer · Devotion · Faith</div>
+    <h1>Stillwater<br><em>Your Spiritual</em><br>Companion.</h1>
+    <p class="hero-lead">Find peace in God's Word, strength in prayer, and guidance for everyday life. Let faith illuminate your path, one quiet moment at a time.</p>
+    <div class="hero-actions"><a class="pill" href="#explore">Begin Your Journey <span aria-hidden="true">↗</span></a><button class="pill secondary" id="verseButton" type="button">Read today's verse</button></div>
+    <p class="mini-note">✦ A peaceful place to pause, pray, and grow in faith.</p>
+  </div>
+  <div class="hero-art" role="img" aria-label="Sunrise over mountains with a cross">
+    <div class="light-ray"></div>
+    <div class="verse-card"><div class="verse-mark">“</div><blockquote>Be still, and know that I am God.</blockquote><cite>Psalm 46:10 · A moment of peace</cite></div>
+  </div>
+</section>
+<section id="explore" aria-labelledby="explore-title">
+  <div class="section-title"><div><h2 id="explore-title">Explore Your <em>Faith</em></h2><p>Discover beautiful ways to draw closer to God and live with purpose.</p></div><span class="count">08 spiritual spaces</span></div>
+  <nav class="menu-grid" aria-label="Spiritual tools">
+    <button class="tile" style="--accent:#ffdc86;--tint:#ffdc861a;animation-delay:.03s" data-topic="Bible"><span class="tile-top"><span class="number">01 / 08</span><span class="icon">✝</span></span><span><h3>Bible & Scripture</h3><p>Read, reflect, and discover the living Word.</p></span><span class="arrow">↗</span></button>
+    <button class="tile" style="--accent:#78c8ff;--tint:#78c8ff1a;animation-delay:.08s" data-topic="Prayer Room"><span class="tile-top"><span class="number">02 / 08</span><span class="icon">🙏</span></span><span><h3>Prayer Room</h3><p>Bring your hopes, worries, and gratitude to God.</p></span><span class="arrow">↗</span></button>
+    <button class="tile" style="--accent:#f18bd7;--tint:#f18bd71a;animation-delay:.13s" data-topic="Daily Devotion"><span class="tile-top"><span class="number">03 / 08</span><span class="icon">♡</span></span><span><h3>Daily Devotion</h3><p>Find encouragement for a faith-filled day.</p></span><span class="arrow">↗</span></button>
+    <button class="tile" style="--accent:#87e7a4;--tint:#87e7a41a;animation-delay:.18s" data-topic="Daily Plan"><span class="tile-top"><span class="number">04 / 08</span><span class="icon">▦</span></span><span><h3>Daily Plan</h3><p>Build a gentle, consistent rhythm with God.</p></span><span class="arrow">↗</span></button>
+    <button class="tile" style="--accent:#5de4ed;--tint:#5de4ed1a;animation-delay:.23s" data-topic="Guidance"><span class="tile-top"><span class="number">05 / 08</span><span class="icon">✧</span></span><span><h3>Guidance</h3><p>Seek wisdom and courage for your next step.</p></span><span class="arrow">↗</span></button>
+    <button class="tile" style="--accent:#d29bff;--tint:#d29bff1a;animation-delay:.28s" data-topic="Worship"><span class="tile-top"><span class="number">06 / 08</span><span class="icon">♫</span></span><span><h3>Worship & Praise</h3><p>Lift your heart through songs of praise.</p></span><span class="arrow">↗</span></button>
+    <button class="tile" style="--accent:#ffbf68;--tint:#ffbf681a;animation-delay:.33s" data-topic="Faith Quotes"><span class="tile-top"><span class="number">07 / 08</span><span class="icon">❝</span></span><span><h3>Faith Quotes</h3><p>Keep God's promises close throughout the day.</p></span><span class="arrow">↗</span></button>
+    <button class="tile" style="--accent:#a9baff;--tint:#a9baff1a;animation-delay:.38s" data-topic="Personal Journal"><span class="tile-top"><span class="number">08 / 08</span><span class="icon">✎</span></span><span><h3>Personal Journal</h3><p>Write down prayers, lessons, and blessings.</p></span><span class="arrow">↗</span></button>
+  </nav>
+</section>
+<aside class="reflection" id="reflection"><div class="reflection-icon">✝</div><div><p>“For I know the plans I have for you,” declares the Lord, “plans to give you hope and a future.”</p><small>Jeremiah 29:11 · Hope for the journey</small></div></aside>
+</main>
+<footer><div><div class="footer-brand">✝ Stillwater</div><div>Faith · Hope · Love · Always</div></div><div class="footer-links"><a href="#home">Home</a><a href="#explore">Spiritual Tools</a><a href="#reflection">Scripture</a><a href="#" id="aboutLink">About</a></div><span>Made for moments of faith and peace.</span></footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal"><button class="close" id="closeModal" aria-label="Close dialog">×</button><div class="modal-icon" id="modalIcon">✝</div><h2 id="modalTitle">A quiet moment</h2><p id="modalDescription"></p><div class="verse" id="modalVerse"></div><label for="journalNote" style="display:block;color:#f4d58c;font-size:.8rem;margin-bottom:8px">Your reflection (optional)</label><textarea id="journalNote" placeholder="Write a thought, prayer, or intention…"></textarea><div class="modal-actions"><button class="pill" id="saveNote">Save reflection</button><button class="pill secondary" id="copyVerse">Copy verse</button></div></div>
+</div>
+<script>
+const topics={
+"Bible":{icon:"✝",description:"Make space to read slowly, notice what stands out, and carry one truth with you today.",verse:"“Your word is a lamp to my feet and a light to my path.” — Psalm 119:105"},
+"Prayer Room":{icon:"🙏",description:"Take a slow breath. Name what is weighing on your heart, give thanks for one blessing, and ask God for wisdom.",verse:"“Cast all your anxiety on him because he cares for you.” — 1 Peter 5:7"},
+"Daily Devotion":{icon:"♡",description:"Let a small moment with God shape the way you speak, serve, and love today.",verse:"“His mercies are new every morning.” — Lamentations 3:23"},
+"Daily Plan":{icon:"▦",description:"Choose a simple rhythm: read a short passage, pray honestly, and act on one thing you learn.",verse:"“Commit to the Lord whatever you do.” — Proverbs 16:3"},
+"Guidance":{icon:"✧",description:"Pause before your next decision. Ask for wisdom, seek good counsel, and move forward with humility.",verse:"“If any of you lacks wisdom, you should ask God.” — James 1:5"},
+"Worship":{icon:"♫",description:"Offer God your attention in song, silence, gratitude, or a simple expression of praise.",verse:"“Sing to the Lord a new song.” — Psalm 96:1"},
+"Faith Quotes":{icon:"❝",description:"Keep a promise from Scripture close today. Return to it whenever you need courage or comfort.",verse:"“Be strong and courageous. Do not be afraid.” — Joshua 1:9"},
+"Personal Journal":{icon:"✎",description:"Record what you are thankful for, what you are learning, and the people you want to remember in prayer.",verse:"“Give thanks in all circumstances.” — 1 Thessalonians 5:18"},
+"Today's Verse":{icon:"✦",description:"Let this verse settle your heart. Read it again slowly and consider what peace might look like in your next step.",verse:"“Be still, and know that I am God.” — Psalm 46:10"},
+"About Stillwater":{icon:"✝",description:"Stillwater is a peaceful front door to your spiritual routines—a place for Scripture, prayer, reflection, and everyday encouragement.",verse:"Faith · Hope · Love · Always"}
+};
+const backdrop=document.getElementById('modalBackdrop'),title=document.getElementById('modalTitle'),desc=document.getElementById('modalDescription'),verse=document.getElementById('modalVerse'),icon=document.getElementById('modalIcon'),note=document.getElementById('journalNote'),toast=document.getElementById('toast');
+let currentTopic="Today's Verse",toastTimer;
+function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}
+function openTopic(name){currentTopic=name;const t=topics[name]||topics.Bible;title.textContent=name;desc.textContent=t.description;verse.textContent=t.verse;icon.textContent=t.icon;note.value=localStorage.getItem('stillwater-note-'+name)||'';backdrop.classList.add('open');document.body.style.overflow='hidden';document.getElementById('closeModal').focus()}
+function closeTopic(){backdrop.classList.remove('open');document.body.style.overflow=''}
+document.querySelectorAll('[data-topic]').forEach(el=>el.addEventListener('click',()=>openTopic(el.dataset.topic)));
+document.getElementById('verseButton').addEventListener('click',()=>openTopic("Today's Verse"));
+document.getElementById('headerPrayer').addEventListener('click',()=>openTopic('Prayer Room'));
+document.getElementById('aboutLink').addEventListener('click',e=>{e.preventDefault();openTopic('About Stillwater')});
+document.getElementById('closeModal').addEventListener('click',closeTopic);
+backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeTopic()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTopic()});
+document.getElementById('saveNote').addEventListener('click',()=>{try{localStorage.setItem('stillwater-note-'+currentTopic,note.value);showToast('Reflection saved on this device.')}catch(e){showToast('Storage is unavailable in this browser.')}});
+document.getElementById('copyVerse').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(verse.textContent);showToast('Verse copied to clipboard.')}catch(e){showToast('Select and copy the verse manually.')}});
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
+</script>
+</body>
+</html>
