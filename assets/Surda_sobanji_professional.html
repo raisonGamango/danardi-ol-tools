@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123b5d">
+<title>Soura Baptist Christian Mandali Samilani — Annual Conference</title>
+<style>
+  :root {
+    --navy:#123b5d;
+    --blue:#1e6fa8;
+    --sky:#eaf6ff;
+    --gold:#d7a928;
+    --ink:#19324a;
+    --muted:#60788c;
+    --line:#d9e5ee;
+    --white:#fff;
+    --shadow:0 14px 40px rgba(18,59,93,.14);
+  }
+
+  * { box-sizing:border-box; }
+
+  html { scroll-behavior:smooth; }
+
+  body {
+    margin:0;
+    min-height:100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 10% 0%, rgba(215,169,40,.13), transparent 30%),
+      radial-gradient(circle at 90% 10%, rgba(30,111,168,.12), transparent 32%),
+      linear-gradient(180deg,#f7fbfe 0%,#edf5f9 100%);
+  }
+
+  .page {
+    width:min(1180px, calc(100% - 28px));
+    margin:28px auto 92px;
+  }
+
+  .hero {
+    position:relative;
+    overflow:hidden;
+    padding:34px 28px 30px;
+    text-align:center;
+    border-radius:24px;
+    color:#fff;
+    background:
+      linear-gradient(135deg, rgba(18,59,93,.98), rgba(30,111,168,.94));
+    box-shadow:var(--shadow);
+  }
+
+  .hero::before,
+  .hero::after {
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+  }
+
+  .hero::before {
+    width:280px;height:280px;
+    right:-100px;top:-150px;
+    background:rgba(255,255,255,.09);
+  }
+
+  .hero::after {
+    width:180px;height:180px;
+    left:-70px;bottom:-110px;
+    background:rgba(215,169,40,.14);
+  }
+
+  .cross {
+    position:relative;
+    z-index:1;
+    width:48px;height:48px;
+    margin:0 auto 12px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.22);
+    font-size:25px;
+  }
+
+  .hero h1 {
+    position:relative;
+    z-index:1;
+    margin:0;
+    font-size:clamp(1.35rem,3.2vw,2rem);
+    letter-spacing:.04em;
+    font-weight:800;
+  }
+
+  .reg {
+    position:relative;
+    z-index:1;
+    margin:8px 0 4px;
+    font-size:.94rem;
+    opacity:.88;
+    letter-spacing:.08em;
+  }
+
+  .location {
+    position:relative;
+    z-index:1;
+    margin:0;
+    font-size:.98rem;
+    opacity:.92;
+  }
+
+  .title {
+    position:relative;
+    z-index:1;
+    display:inline-block;
+    margin:18px 0 0;
+    padding:9px 18px;
+    border-radius:999px;
+    color:#fff;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.2);
+    font-size:clamp(1rem,2.5vw,1.25rem);
+    font-weight:700;
+  }
+
+  .toolbar {
+    margin:18px 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .summary {
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .badge {
+    padding:9px 13px;
+    border-radius:12px;
+    background:#fff;
+    border:1px solid var(--line);
+    box-shadow:0 6px 18px rgba(18,59,93,.07);
+    color:var(--muted);
+    font-size:.9rem;
+  }
+
+  .badge strong { color:var(--navy); }
+
+  .controls {
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+  }
+
+  button {
+    border:0;
+    cursor:pointer;
+    padding:10px 14px;
+    border-radius:11px;
+    font-weight:700;
+    color:#fff;
+    background:var(--navy);
+    box-shadow:0 5px 14px rgba(18,59,93,.16);
+  }
+
+  button:hover { transform:translateY(-1px); }
+
+  .search {
+    min-width:220px;
+    padding:11px 13px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    outline:none;
+    background:#fff;
+    color:var(--ink);
+  }
+
+  .card {
+    overflow:hidden;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+  }
+
+  .table-wrap {
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  table {
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    min-width:650px;
+  }
+
+  thead th {
+    position:sticky;
+    top:0;
+    z-index:3;
+    padding:15px 16px;
+    text-align:left;
+    color:#fff;
+    background:linear-gradient(135deg,var(--navy),var(--blue));
+    font-size:.86rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  thead th:first-child { text-align:center; width:90px; }
+
+  tbody td {
+    padding:13px 16px;
+    border-bottom:1px solid #e7eef3;
+    font-size:.96rem;
+    vertical-align:middle;
+  }
+
+  tbody tr:nth-child(even) td { background:#f8fbfd; }
+
+  tbody tr:hover td {
+    background:#eef8ff;
+  }
+
+  td.sl {
+    text-align:center;
+    font-weight:800;
+    color:var(--blue);
+  }
+
+  td.year {
+    font-weight:800;
+    color:var(--navy);
+    white-space:nowrap;
+  }
+
+  tbody tr:last-child td { border-bottom:0; }
+
+  .footer {
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:20;
+    padding:9px 14px;
+    color:#fff;
+    text-align:center;
+    background:rgba(13,37,57,.96);
+    box-shadow:0 -6px 22px rgba(0,0,0,.12);
+    font-size:.85rem;
+  }
+
+  .footer span {
+    color:#ffd968;
+    font-weight:700;
+  }
+
+  .no-results {
+    display:none;
+    padding:30px;
+    text-align:center;
+    color:var(--muted);
+  }
+
+  @media (max-width:700px) {
+    .page { width:min(100% - 14px, 1180px); margin-top:10px; }
+    .hero { padding:26px 17px 24px; border-radius:18px; }
+    .toolbar { align-items:stretch; }
+    .summary,.controls { width:100%; }
+    .search { flex:1; min-width:160px; }
+    button { flex:0 0 auto; }
+  }
+
+  @media print {
+    body { background:#fff; }
+    .page { width:100%; margin:0; }
+    .hero { color:#000; background:#fff; border:2px solid var(--navy); box-shadow:none; }
+    .hero::before,.hero::after,.cross { display:none; }
+    .toolbar,.footer { display:none; }
+    .card { box-shadow:none; }
+    thead th { position:static; }
+  }
+</style>
+</head>
+
+<body>
+<main class="page">
+  <header class="hero">
+    <div class="cross" aria-hidden="true">✝</div>
+    <h1>SOURA BAPTIST CHRISTIAN MANDALI SAMILANI</h1>
+    <div class="reg">Regd. No. 8445/798</div>
+    <p class="location">BETHANY BONGLOW · SERANGO</p>
+    <div class="title">INCUMBENCY CHART OF ANNUAL CONFERENCE (SURDA SOBAN)</div>
+  </header>
+
+  <section class="toolbar" aria-label="Table controls">
+    <div class="summary">
+      <div class="badge">Total Records: <strong>82</strong></div>
+      <div class="badge">Period: <strong>1949–2030</strong></div>
+    </div>
+    <div class="controls">
+      <input id="search" class="search" type="search" placeholder="Search year, place or area…" aria-label="Search records">
+      <button type="button" onclick="window.print()">🖨 Print</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="table-wrap">
+      <table id="conferenceTable">
+        <thead>
+          <tr>
+            <th>Sl. No.</th>
+            <th>Year</th>
+            <th>Place</th>
+            <th>Area</th>
+          </tr>
+        </thead>
+        <tbody>
+<tr>
+      <td class="sl">1</td>
+      <td class="year">1949</td>
+      <td>Serango</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">2</td>
+      <td class="year">1950</td>
+      <td>Tamkur</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">3</td>
+      <td class="year">1951</td>
+      <td>Kardambasing</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">4</td>
+      <td class="year">1952</td>
+      <td>Karanjasing</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">5</td>
+      <td class="year">1953</td>
+      <td>Tamkumar</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">6</td>
+      <td class="year">1954</td>
+      <td>Tarjasing</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">7</td>
+      <td class="year">1955</td>
+      <td>Ongra</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">8</td>
+      <td class="year">1956</td>
+      <td>B.Kalakote</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">9</td>
+      <td class="year">1957</td>
+      <td>Rugasing</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">10</td>
+      <td class="year">1958</td>
+      <td>Raikol</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">11</td>
+      <td class="year">1959</td>
+      <td>Dombalo</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">12</td>
+      <td class="year">1960</td>
+      <td>Luangar</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">13</td>
+      <td class="year">1961</td>
+      <td>Engerda</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">14</td>
+      <td class="year">1962</td>
+      <td>Rayerda</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">15</td>
+      <td class="year">1963</td>
+      <td>Atarsing</td>
+      <td>Attarsing</td>
+    </tr>
+<tr>
+      <td class="sl">16</td>
+      <td class="year">1964</td>
+      <td>Rongomunda</td>
+      <td>Karanjasing</td>
+    </tr>
+<tr>
+      <td class="sl">17</td>
+      <td class="year">1965</td>
+      <td>Burding</td>
+      <td>Burding</td>
+    </tr>
+<tr>
+      <td class="sl">18</td>
+      <td class="year">1966</td>
+      <td>Tabarada</td>
+      <td>Atarsing</td>
+    </tr>
+<tr>
+      <td class="sl">19</td>
+      <td class="year">1967</td>
+      <td>Basengsal</td>
+      <td>Karanjasing</td>
+    </tr>
+<tr>
+      <td class="sl">20</td>
+      <td class="year">1968</td>
+      <td>Sukui</td>
+      <td>Sukui</td>
+    </tr>
+<tr>
+      <td class="sl">21</td>
+      <td class="year">1969</td>
+      <td>Kulusing</td>
+      <td>Rayerda</td>
+    </tr>
+<tr>
+      <td class="sl">22</td>
+      <td class="year">1970</td>
+      <td>Abada</td>
+      <td>Karanjasing</td>
+    </tr>
+<tr>
+      <td class="sl">23</td>
+      <td class="year">1971</td>
+      <td>Gardapal</td>
+      <td>Attarsing</td>
+    </tr>
+<tr>
+      <td class="sl">24</td>
+      <td class="year">1972</td>
+      <td>B.Kalakote</td>
+      <td>Tamkur</td>
+    </tr>
+<tr>
+      <td class="sl">25</td>
+      <td class="year">1973</td>
+      <td>Ratnopur</td>
+      <td>Dombalo</td>
+    </tr>
+<tr>
+      <td class="sl">26</td>
+      <td class="year">1974</td>
+      <td>Karanjasing</td>
+      <td>Karanjasing</td>
+    </tr>
+<tr>
+      <td class="sl">27</td>
+      <td class="year">1975</td>
+      <td>Tarjasing</td>
+      <td>Tarjasing</td>
+    </tr>
+<tr>
+      <td class="sl">28</td>
+      <td class="year">1976</td>
+      <td>Attarsing</td>
+      <td>Attarsing</td>
+    </tr>
+<tr>
+      <td class="sl">29</td>
+      <td class="year">1977</td>
+      <td>P.Colony</td>
+      <td></td>
+    </tr>
+<tr>
+      <td class="sl">30</td>
+      <td class="year">1978</td>
+      <td>Sukui</td>
+      <td>Sukui</td>
+    </tr>
+<tr>
+      <td class="sl">31</td>
+      <td class="year">1979</td>
+      <td>Rayerda</td>
+      <td>Rayerda</td>
+    </tr>
+<tr>
+      <td class="sl">32</td>
+      <td class="year">1980</td>
+      <td>Tamkur</td>
+      <td>Tamkur</td>
+    </tr>
+<tr>
+      <td class="sl">33</td>
+      <td class="year">1981</td>
+      <td>Puspang</td>
+      <td>Attarsing</td>
+    </tr>
+<tr>
+      <td class="sl">34</td>
+      <td class="year">1982</td>
+      <td>Udayguda</td>
+      <td>Rangamunda</td>
+    </tr>
+<tr>
+      <td class="sl">35</td>
+      <td class="year">1983</td>
+      <td>P.Colony</td>
+      <td>Burding</td>
+    </tr>
+<tr>
+      <td class="sl">36</td>
+      <td class="year">1984</td>
+      <td>Mondol Sahi</td>
+      <td>Dombalo</td>
+    </tr>
+<tr>
+      <td class="sl">37</td>
+      <td class="year">1985</td>
+      <td>Gudangsing</td>
+      <td>Saratal</td>
+    </tr>
+<tr>
+      <td class="sl">38</td>
+      <td class="year">1986</td>
+      <td>Ondarjuli</td>
+      <td>Rauthpur</td>
+    </tr>
+<tr>
+      <td class="sl">39</td>
+      <td class="year">1987</td>
+      <td>Balibado</td>
+      <td>Balibado</td>
+    </tr>
+<tr>
+      <td class="sl">40</td>
+      <td class="year">1988</td>
+      <td>Talmonda</td>
+      <td>Talmonda</td>
+    </tr>
+<tr>
+      <td class="sl">41</td>
+      <td class="year">1989</td>
+      <td>Rugasing</td>
+      <td>Attarsing</td>
+    </tr>
+<tr>
+      <td class="sl">42</td>
+      <td class="year">1990</td>
+      <td>Souri Colony</td>
+      <td>Karanjasing</td>
+    </tr>
+<tr>
+      <td class="sl">43</td>
+      <td class="year">1991</td>
+      <td>Putta</td>
+      <td>Tarjasing</td>
+    </tr>
+<tr>
+      <td class="sl">44</td>
+      <td class="year">1992</td>
+      <td>B.Kalakote</td>
+      <td>Tamkur</td>
+    </tr>
+<tr>
+      <td class="sl">45</td>
+      <td class="year">1993</td>
+      <td>Alaponka</td>
+      <td>Goshen</td>
+    </tr>
+<tr>
+      <td class="sl">46</td>
+      <td class="year">1994</td>
+      <td>Kambunsing</td>
+      <td>Kambunsing</td>
+    </tr>
+<tr>
+      <td class="sl">47</td>
+      <td class="year">1995</td>
+      <td>Baradang</td>
+      <td>Udayguda</td>
+    </tr>
+<tr>
+      <td class="sl">48</td>
+      <td class="year">1996</td>
+      <td>Kurgada</td>
+      <td>Sunkurdi</td>
+    </tr>
+<tr>
+      <td class="sl">49</td>
+      <td class="year">1997</td>
+      <td>Burorda</td>
+      <td>Burorda</td>
+    </tr>
+<tr>
+      <td class="sl">50</td>
+      <td class="year">1998</td>
+      <td>Kurgada</td>
+      <td>Rayerda</td>
+    </tr>
+<tr>
+      <td class="sl">51</td>
+      <td class="year">1999</td>
+      <td>Kristopur</td>
+      <td>Balibado</td>
+    </tr>
+<tr>
+      <td class="sl">52</td>
+      <td class="year">2000</td>
+      <td>Tabarsing</td>
+      <td>Saratal</td>
+    </tr>
+<tr>
+      <td class="sl">53</td>
+      <td class="year">2001</td>
+      <td>K.Pardsam</td>
+      <td>Onabudi</td>
+    </tr>
+<tr>
+      <td class="sl">54</td>
+      <td class="year">2002</td>
+      <td>Linga</td>
+      <td>Burding</td>
+    </tr>
+<tr>
+      <td class="sl">55</td>
+      <td class="year">2003</td>
+      <td>Sundi Talmonda</td>
+      <td>Dombalo</td>
+    </tr>
+<tr>
+      <td class="sl">56</td>
+      <td class="year">2004</td>
+      <td>Kalo Ambo Sahi</td>
+      <td>Badua</td>
+    </tr>
+<tr>
+      <td class="sl">57</td>
+      <td class="year">2005</td>
+      <td>Bontelda</td>
+      <td>Luara</td>
+    </tr>
+<tr>
+      <td class="sl">58</td>
+      <td class="year">2006</td>
+      <td>Libiriguda</td>
+      <td>Libiriguda</td>
+    </tr>
+<tr>
+      <td class="sl">59</td>
+      <td class="year">2007</td>
+      <td>Dugoria</td>
+      <td>Attarsing</td>
+    </tr>
+<tr>
+      <td class="sl">60</td>
+      <td class="year">2008</td>
+      <td>Muriguma</td>
+      <td>Rauthpur</td>
+    </tr>
+<tr>
+      <td class="sl">61</td>
+      <td class="year">2009</td>
+      <td>Sukui</td>
+      <td>Sukui</td>
+    </tr>
+<tr>
+      <td class="sl">62</td>
+      <td class="year">2010</td>
+      <td>Patali</td>
+      <td>Karanjasing</td>
+    </tr>
+<tr>
+      <td class="sl">63</td>
+      <td class="year">2011</td>
+      <td>Tarabsing</td>
+      <td>Tarabsing</td>
+    </tr>
+<tr>
+      <td class="sl">64</td>
+      <td class="year">2012</td>
+      <td>Kumjang</td>
+      <td>Tarjasing</td>
+    </tr>
+<tr>
+      <td class="sl">65</td>
+      <td class="year">2013</td>
+      <td>B.Kalakote</td>
+      <td>Tamkur</td>
+    </tr>
+<tr>
+      <td class="sl">66</td>
+      <td class="year">2014</td>
+      <td>Balia Sahi</td>
+      <td>Rangomunda</td>
+    </tr>
+<tr>
+      <td class="sl">67</td>
+      <td class="year">2015</td>
+      <td>Burding</td>
+      <td>Burding</td>
+    </tr>
+<tr>
+      <td class="sl">68</td>
+      <td class="year">2016</td>
+      <td>Burorda</td>
+      <td>Burorda</td>
+    </tr>
+<tr>
+      <td class="sl">69</td>
+      <td class="year">2017</td>
+      <td>Khariguma</td>
+      <td>Goshen</td>
+    </tr>
+<tr>
+      <td class="sl">70</td>
+      <td class="year">2018</td>
+      <td>Ambrurdi</td>
+      <td>Onabudi</td>
+    </tr>
+<tr>
+      <td class="sl">71</td>
+      <td class="year">2019</td>
+      <td>Tinkirsing</td>
+      <td>Tinkirsing</td>
+    </tr>
+<tr>
+      <td class="sl">72</td>
+      <td class="year">2020</td>
+      <td>C.M. Colony</td>
+      <td>C.M. Colony</td>
+    </tr>
+<tr>
+      <td class="sl">73</td>
+      <td class="year">2021</td>
+      <td></td>
+      <td>Jannigurda</td>
+    </tr>
+<tr>
+      <td class="sl">74</td>
+      <td class="year">2022</td>
+      <td></td>
+      <td>Rayerda</td>
+    </tr>
+<tr>
+      <td class="sl">75</td>
+      <td class="year">2023</td>
+      <td></td>
+      <td>Balibado</td>
+    </tr>
+<tr>
+      <td class="sl">76</td>
+      <td class="year">2024</td>
+      <td></td>
+      <td>Sunkurdi</td>
+    </tr>
+<tr>
+      <td class="sl">77</td>
+      <td class="year">2025</td>
+      <td></td>
+      <td>Puspang</td>
+    </tr>
+<tr>
+      <td class="sl">78</td>
+      <td class="year">2026</td>
+      <td></td>
+      <td>Kambunsing</td>
+    </tr>
+<tr>
+      <td class="sl">79</td>
+      <td class="year">2027</td>
+      <td></td>
+      <td>Udayguda</td>
+    </tr>
+<tr>
+      <td class="sl">80</td>
+      <td class="year">2028</td>
+      <td></td>
+      <td>Dombalo</td>
+    </tr>
+<tr>
+      <td class="sl">81</td>
+      <td class="year">2029</td>
+      <td></td>
+      <td>Gordapodor</td>
+    </tr>
+<tr>
+      <td class="sl">82</td>
+      <td class="year">2030</td>
+      <td></td>
+      <td>Chandangiri</td>
+    </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="noResults" class="no-results">No matching records found.</div>
+  </section>
+</main>
+
+<footer class="footer">
+  <span>Notice:</span> Shown data will be corrected soon if any mistakes are found in the data provided.
+</footer>
+
+<script>
+  const search = document.getElementById('search');
+  const rows = [...document.querySelectorAll('#conferenceTable tbody tr')];
+  const noResults = document.getElementById('noResults');
+
+  search.addEventListener('input', () => {
+    const term = search.value.trim().toLowerCase();
+    let visible = 0;
+
+    rows.forEach(row => {
+      const match = row.textContent.toLowerCase().includes(term);
+      row.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    noResults.style.display = visible ? 'none' : 'block';
+  });
+</script>
+</body>
+</html>

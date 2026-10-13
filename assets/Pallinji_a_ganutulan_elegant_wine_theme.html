@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5b214f">
+<title>Pallinji A Ganutulan</title>
+
+<style>
+:root {
+  --wine:#5b214f;
+  --wine-dark:#35152f;
+  --rose:#9b4d72;
+  --gold:#d6aa55;
+  --cream:#fffaf1;
+  --paper:#fffdf8;
+  --ink:#342d32;
+  --muted:#766c72;
+  --line:#eadfd4;
+  --shadow:0 18px 45px rgba(53,21,47,.14);
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  min-height:100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(214,170,85,.16), transparent 25%),
+    radial-gradient(circle at 88% 18%, rgba(155,77,114,.12), transparent 28%),
+    linear-gradient(135deg,#fbf7f0 0%,#f5ece6 50%,#fbf8f3 100%);
+}
+
+.page {
+  width:min(1050px,calc(100% - 28px));
+  margin:30px auto 50px;
+}
+
+.hero {
+  position:relative;
+  overflow:hidden;
+  padding:42px 25px 38px;
+  text-align:center;
+  border:1px solid rgba(214,170,85,.45);
+  border-radius:30px;
+  color:#fff;
+  background:
+    linear-gradient(135deg,rgba(53,21,47,.98),rgba(91,33,79,.96) 55%,rgba(155,77,114,.94));
+  box-shadow:var(--shadow);
+}
+
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:13px;
+  border:1px solid rgba(214,170,85,.35);
+  border-radius:23px;
+  pointer-events:none;
+}
+
+.ornament {
+  position:relative;
+  z-index:1;
+  width:64px;
+  height:64px;
+  margin:0 auto 17px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(214,170,85,.7);
+  border-radius:50%;
+  color:var(--gold);
+  font-size:30px;
+  background:rgba(255,255,255,.07);
+  box-shadow:0 0 0 7px rgba(214,170,85,.06);
+}
+
+.hero h1 {
+  position:relative;
+  z-index:1;
+  margin:0;
+  font-size:clamp(1.25rem,3.6vw,2rem);
+  line-height:1.3;
+  letter-spacing:.055em;
+  font-weight:700;
+}
+
+.reg {
+  position:relative;
+  z-index:1;
+  margin:10px 0 5px;
+  color:#f0dcae;
+  font-size:.9rem;
+  letter-spacing:.13em;
+}
+
+.location {
+  position:relative;
+  z-index:1;
+  margin:0;
+  color:#f7ecef;
+  font-size:.96rem;
+  letter-spacing:.04em;
+}
+
+.title {
+  position:relative;
+  z-index:1;
+  display:inline-block;
+  margin-top:22px;
+  padding:10px 23px;
+  color:var(--wine-dark);
+  background:linear-gradient(135deg,#f7d995,#fff0c8,#d6aa55);
+  border-radius:5px;
+  font-size:clamp(1.05rem,3vw,1.4rem);
+  font-weight:700;
+  letter-spacing:.04em;
+  box-shadow:0 8px 20px rgba(0,0,0,.16);
+}
+
+.toolbar {
+  margin:19px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.summary {
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+.badge {
+  padding:10px 14px;
+  border:1px solid var(--line);
+  border-radius:5px;
+  background:rgba(255,253,248,.9);
+  box-shadow:0 5px 15px rgba(53,21,47,.07);
+  color:var(--muted);
+  font-family:"Segoe UI",Arial,sans-serif;
+  font-size:.88rem;
+}
+
+.badge strong { color:var(--wine); }
+
+.controls {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.search {
+  width:250px;
+  padding:11px 13px;
+  border:1px solid #d8c9c1;
+  border-radius:5px;
+  outline:none;
+  background:#fffdf9;
+  color:var(--ink);
+  font-family:"Segoe UI",Arial,sans-serif;
+}
+
+.search:focus {
+  border-color:var(--rose);
+  box-shadow:0 0 0 3px rgba(155,77,114,.12);
+}
+
+button {
+  padding:11px 15px;
+  border:0;
+  border-radius:5px;
+  cursor:pointer;
+  color:#fff;
+  background:var(--wine);
+  font-weight:700;
+  font-family:"Segoe UI",Arial,sans-serif;
+  box-shadow:0 5px 13px rgba(53,21,47,.16);
+  transition:.2s ease;
+}
+
+button:hover {
+  transform:translateY(-1px);
+  background:var(--wine-dark);
+}
+
+.card {
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--paper);
+  box-shadow:var(--shadow);
+}
+
+.table-wrap {
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+table {
+  width:100%;
+  min-width:590px;
+  border-collapse:separate;
+  border-spacing:0;
+}
+
+thead th {
+  position:sticky;
+  top:0;
+  z-index:3;
+  padding:16px 17px;
+  text-align:left;
+  color:#fff;
+  background:linear-gradient(135deg,var(--wine-dark),var(--wine));
+  font-family:"Segoe UI",Arial,sans-serif;
+  font-size:.82rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+thead th:first-child {
+  width:95px;
+  text-align:center;
+}
+
+tbody td {
+  padding:15px 17px;
+  border-bottom:1px solid var(--line);
+  font-size:1rem;
+  vertical-align:middle;
+}
+
+tbody tr:nth-child(even) td {
+  background:#fbf4ed;
+}
+
+tbody tr:hover td {
+  background:#f8e9ef;
+}
+
+tbody tr:last-child td {
+  border-bottom:0;
+}
+
+td.sl {
+  text-align:center;
+  color:var(--gold);
+  font-family:"Segoe UI",Arial,sans-serif;
+  font-weight:800;
+}
+
+td.place {
+  color:var(--wine);
+  font-weight:700;
+}
+
+td.date {
+  color:#665b61;
+  font-family:"Segoe UI",Arial,sans-serif;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+.no-results {
+  display:none;
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+  font-family:"Segoe UI",Arial,sans-serif;
+}
+
+.note {
+  margin-top:14px;
+  padding:12px 15px;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:10px;
+  color:#766c72;
+  background:rgba(255,253,248,.75);
+  font-family:"Segoe UI",Arial,sans-serif;
+  font-size:.84rem;
+}
+
+@media(max-width:700px) {
+  .page { width:calc(100% - 14px); margin-top:10px; }
+  .hero { padding:31px 15px 29px; border-radius:21px; }
+  .toolbar { align-items:stretch; }
+  .summary,.controls { width:100%; }
+  .search { flex:1; width:auto; min-width:150px; }
+}
+
+@media(print) {
+  body { background:#fff; }
+  .page { width:100%; margin:0; }
+  .hero {
+    color:#000;
+    background:#fff;
+    border:2px solid var(--wine);
+    box-shadow:none;
+  }
+  .hero::before,.ornament { display:none; }
+  .toolbar,.note { display:none; }
+  .card { box-shadow:none; }
+  thead th { position:static; }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+<header class="hero">
+  <div class="ornament" aria-hidden="true">✝</div>
+  <h1>SOURA BAPTIST CHRISTIAN MANDALI SAMILANI</h1>
+  <div class="reg">REGD. NO. 8445/798</div>
+  <p class="location">BETHANY BONGLOW · SERANGO</p>
+  <div class="title">PALLINJI A GANUTULAN</div>
+</header>
+
+<section class="toolbar">
+  <div class="summary">
+    <div class="badge">Total Records: <strong>33</strong></div>
+    <div class="badge">Historical Register</div>
+  </div>
+  <div class="controls">
+    <input id="search" class="search" type="search"
+           placeholder="Search place or date…" aria-label="Search records">
+    <button type="button" onclick="window.print()">🖨 Print</button>
+  </div>
+</section>
+
+<section class="card">
+  <div class="table-wrap">
+    <table id="pallinjiTable">
+      <thead>
+        <tr>
+          <th>Sl. No.</th>
+          <th>Pallin Ahim</th>
+          <th>Tariko</th>
+        </tr>
+      </thead>
+      
+<tr>
+      <td class="sl">1</td>
+      <td class="place">Rauthpur</td>
+      <td class="date">1954</td>
+    </tr>
+<tr>
+      <td class="sl">2</td>
+      <td class="place">Dombalo</td>
+      <td class="date">14/04/1960</td>
+    </tr>
+<tr>
+      <td class="sl">3</td>
+      <td class="place">Attarsing</td>
+      <td class="date">12/03/1961</td>
+    </tr>
+<tr>
+      <td class="sl">4</td>
+      <td class="place">Burding</td>
+      <td class="date">23/03/1963</td>
+    </tr>
+<tr>
+      <td class="sl">5</td>
+      <td class="place">Karanjasing</td>
+      <td class="date">18/07/1964</td>
+    </tr>
+<tr>
+      <td class="sl">6</td>
+      <td class="place">Tarjasing</td>
+      <td class="date">02/03/1965</td>
+    </tr>
+<tr>
+      <td class="sl">7</td>
+      <td class="place">Rayerda</td>
+      <td class="date">12/07/1966</td>
+    </tr>
+<tr>
+      <td class="sl">8</td>
+      <td class="place">Tamkur</td>
+      <td class="date">17/09/1969</td>
+    </tr>
+<tr>
+      <td class="sl">9</td>
+      <td class="place">Sukui</td>
+      <td class="date">07/12/1973</td>
+    </tr>
+<tr>
+      <td class="sl">10</td>
+      <td class="place">Assam</td>
+      <td class="date">1974</td>
+    </tr>
+<tr>
+      <td class="sl">11</td>
+      <td class="place">Potarokudi</td>
+      <td class="date">23/03/1975</td>
+    </tr>
+<tr>
+      <td class="sl">12</td>
+      <td class="place">Goshen</td>
+      <td class="date">07/06/1977</td>
+    </tr>
+<tr>
+      <td class="sl">13</td>
+      <td class="place">Balibado</td>
+      <td class="date">08/06/1977</td>
+    </tr>
+<tr>
+      <td class="sl">14</td>
+      <td class="place">Sunkurdi</td>
+      <td class="date">27/07/1977</td>
+    </tr>
+<tr>
+      <td class="sl">15</td>
+      <td class="place">Rangamunda</td>
+      <td class="date">05/10/1977</td>
+    </tr>
+<tr>
+      <td class="sl">16</td>
+      <td class="place">Sratal</td>
+      <td class="date">29/12/1977</td>
+    </tr>
+<tr>
+      <td class="sl">17</td>
+      <td class="place">Talmonda</td>
+      <td class="date">12/02/1982</td>
+    </tr>
+<tr>
+      <td class="sl">18</td>
+      <td class="place">Badua</td>
+      <td class="date">11/07/1982</td>
+    </tr>
+<tr>
+      <td class="sl">19</td>
+      <td class="place">Kambunsing</td>
+      <td class="date">02/10/1982</td>
+    </tr>
+<tr>
+      <td class="sl">20</td>
+      <td class="place">Puspang</td>
+      <td class="date">15/11/1982</td>
+    </tr>
+<tr>
+      <td class="sl">21</td>
+      <td class="place">Tinkirsing</td>
+      <td class="date">04/01/1989</td>
+    </tr>
+<tr>
+      <td class="sl">22</td>
+      <td class="place">Udayguda</td>
+      <td class="date">26/10/1990</td>
+    </tr>
+<tr>
+      <td class="sl">23</td>
+      <td class="place">Tarabsing</td>
+      <td class="date">16/12/1992</td>
+    </tr>
+<tr>
+      <td class="sl">24</td>
+      <td class="place">Burorda</td>
+      <td class="date">28/12/1992</td>
+    </tr>
+<tr>
+      <td class="sl">25</td>
+      <td class="place">C.M. COLONY</td>
+      <td class="date">25/01/1961</td>
+    </tr>
+<tr>
+      <td class="sl">26</td>
+      <td class="place">Onabudi</td>
+      <td class="date">09/12/1997</td>
+    </tr>
+<tr>
+      <td class="sl">27</td>
+      <td class="place">Janigurda</td>
+      <td class="date">22/12/1997</td>
+    </tr>
+<tr>
+      <td class="sl">28</td>
+      <td class="place">Libirigurda</td>
+      <td class="date">21/01/1998</td>
+    </tr>
+<tr>
+      <td class="sl">29</td>
+      <td class="place">Gordapodor</td>
+      <td class="date">22/09/1998</td>
+    </tr>
+<tr>
+      <td class="sl">30</td>
+      <td class="place">Luara</td>
+      <td class="date">17/11/1998</td>
+    </tr>
+<tr>
+      <td class="sl">31</td>
+      <td class="place">Chandangiri</td>
+      <td class="date">27/11/1998</td>
+    </tr>
+<tr>
+      <td class="sl">32</td>
+      <td class="place">Borei</td>
+      <td class="date">xx/12/2023</td>
+    </tr>
+<tr>
+      <td class="sl">33</td>
+      <td class="place">Luangar</td>
+      <td class="date">xx/12/2023</td>
+    </tr>
+        
+    </table>
+  </div>
+  <div id="noResults" class="no-results">No matching records found.</div>
+</section>
+
+<div class="note">
+  Historical record · Original data and terminology preserved as provided.
+</div>
+
+</main>
+
+<script>
+const search = document.getElementById('search');
+const rows = [...document.querySelectorAll('#pallinjiTable tbody tr')];
+const noResults = document.getElementById('noResults');
+
+search.addEventListener('input', () => {
+  const term = search.value.trim().toLowerCase();
+  let visible = 0;
+
+  rows.forEach(row => {
+    const match = row.textContent.toLowerCase().includes(term);
+    row.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+
+  noResults.style.display = visible ? 'none' : 'block';
+});
+</script>
+
+</body>
+</html>
