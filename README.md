@@ -1,29 +1,11 @@
-# Stillwater — Christian Spiritual Web App
+# Stillwater — Spiritual Companion
 
-A responsive, animated Christian spiritual landing page with a sunrise-and-cross visual, numbered square menu cards, scripture reflections, and a modal for each spiritual tool. Notes are saved locally in the visitor's browser.
+A responsive Christian-themed static web app with a cinematic sunrise-and-cross hero, eight image-backed spiritual menu cards, scripture panels, animated interactions, and reflection notes saved locally in the browser.
 
 ## Deploy to Cloudflare Pages
-
-### Option A — Upload the ZIP
-1. Extract this ZIP on your computer.
-2. Open the Cloudflare dashboard and go to **Workers & Pages → Create → Pages → Upload assets** (wording may vary).
-3. Upload the extracted project files/folder. The root must contain `index.html`.
+1. Upload the **contents** of this folder to a GitHub repository (keep `index.html` in the repository root).
+2. In Cloudflare Pages, connect the repository.
+3. Framework preset: **None**. Build command: leave empty. Build output directory: `/` (or `.` if the dashboard requests a directory).
 4. Deploy.
 
-### Option B — GitHub
-1. Create a new GitHub repository.
-2. Upload **the contents** of this folder (not the ZIP itself) to the repository root.
-3. In Cloudflare, open **Workers & Pages → Create → Pages → Connect to Git**.
-4. Select the repository. Use **no build command** and set the build output directory to `/` (root).
-5. Save and deploy.
-
-## Customize
-- Main design and content: `index.html`
-- Background artwork: `assets/sunrise-cross.jpg`
-- App install metadata: `manifest.webmanifest`
-- Offline caching: `sw.js`
-
-## Notes
-- Google Fonts are loaded online; system fallback fonts are included.
-- Reflection notes are stored in local browser storage and are not synced between devices.
-- This is a static front-end app; it does not include user accounts or cloud database.
+All images are bundled under `assets/`; no external image hosting is needed. Google Fonts are optional and will fall back to system fonts if unavailable.
