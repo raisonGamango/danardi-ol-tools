@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ବିବାହ ଉପହାର ତାଲିକା — ସୌରା ବାପଟିଷ୍ଟ ଖ୍ରୀଷ୍ଟିୟାନ ମଣ୍ଡଳୀ</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --ink:#172033;
+  --muted:#657086;
+  --primary:#234e70;
+  --primary-dark:#17364f;
+  --accent:#c8943e;
+  --paper:#ffffff;
+  --surface:#eef3f7;
+  --line:#d8e0e8;
+  --editable:#fff8dc;
+  --shadow:0 18px 55px rgba(22,38,58,.14);
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  min-height:100vh;
+  padding:36px 18px 60px;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(200,148,62,.12), transparent 26%),
+    radial-gradient(circle at 85% 15%, rgba(35,78,112,.10), transparent 28%),
+    linear-gradient(135deg,#edf2f6,#f8fafc 48%,#e9eef3);
+  font-family:'Noto Sans Oriya','Nirmala UI','Noto Sans',sans-serif;
+  font-size:15px;
+  line-height:1.65;
+}
+
+.toolbar{
+  position:fixed;
+  top:18px;
+  right:18px;
+  display:flex;
+  gap:9px;
+  z-index:1000;
+}
+
+.action-btn{
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;
+  padding:11px 16px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  box-shadow:0 8px 24px rgba(23,54,79,.22);
+  cursor:pointer;
+  font:600 14px/1 'Noto Sans Oriya','Nirmala UI',sans-serif;
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+.action-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(23,54,79,.28);filter:brightness(1.06)}
+.action-btn.secondary{background:#fff;color:var(--primary);border-color:var(--line)}
+
+.document-container{
+  position:relative;
+  width:min(210mm,100%);
+  margin:0 auto;
+  padding:18mm 17mm 17mm;
+  background:var(--paper);
+  border:1px solid rgba(35,78,112,.10);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.document-container::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:7px;
+  background:linear-gradient(90deg,var(--primary),var(--accent),var(--primary));
+}
+
+.document-container::after{
+  content:"";
+  position:absolute;
+  inset:13px;
+  border:1px solid rgba(200,148,62,.20);
+  border-radius:11px;
+  pointer-events:none;
+}
+
+.header{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  margin-bottom:22px;
+  padding-bottom:16px;
+  border-bottom:2px solid var(--accent);
+}
+
+.header h2{
+  margin:0;
+  color:var(--primary-dark);
+  font-size:24px;
+  line-height:1.35;
+  font-weight:800;
+  letter-spacing:.1px;
+}
+
+.header p{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:15px;
+  font-weight:600;
+}
+
+.meta-info{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin:0 0 20px;
+  padding:11px 14px;
+  background:linear-gradient(135deg,#f6f9fb,#edf3f7);
+  border:1px solid var(--line);
+  border-radius:10px;
+  font-weight:600;
+}
+.meta-info>div:last-child{text-align:right}
+
+.editable{
+  display:inline-block;
+  min-width:1.2em;
+  padding:0 5px;
+  border-radius:5px;
+  color:#533d08;
+  background:var(--editable);
+  font-weight:700;
+  font-style:normal;
+  outline:1px dashed rgba(200,148,62,.65);
+  outline-offset:2px;
+  transition:background .15s ease,box-shadow .15s ease;
+}
+.editable:focus{
+  background:#fffdf2;
+  box-shadow:0 0 0 3px rgba(200,148,62,.18);
+  outline:1px solid var(--accent);
+}
+
+.content-body{
+  position:relative;
+  z-index:1;
+  margin-bottom:20px;
+  text-align:justify;
+  line-height:1.85;
+}
+.content-body p{margin:0 0 11px}
+.content-body p:first-child::first-letter{font-weight:800;color:var(--primary)}
+
+.table-wrap{
+  position:relative;
+  z-index:1;
+  overflow-x:auto;
+  margin:20px 0 24px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:0 7px 20px rgba(30,52,72,.07);
+}
+
+table{
+  width:100%;
+  min-width:650px;
+  border-collapse:separate;
+  border-spacing:0;
+  margin:0;
+  background:#fff;
+}
+
+th,td{
+  border:0;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:8px 9px;
+  text-align:center;
+  vertical-align:middle;
+  font-size:14px;
+}
+
+th:last-child,td:last-child{border-right:0}
+tbody tr:last-child td{border-bottom:0}
+
+thead th{
+  color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  font-weight:800;
+  white-space:nowrap;
+  padding:10px 8px;
+}
+
+tbody tr:nth-child(even){background:#f8fafc}
+tbody tr:hover{background:#fff8e7}
+
+tbody td:nth-child(3){text-align:left;font-weight:600}
+
+tfoot td{
+  background:#f0f5f8;
+  color:var(--primary-dark);
+  font-weight:800;
+  border-bottom:0;
+}
+
+tfoot td:last-child{
+  color:#6b4c0e;
+  background:#fff5d6;
+}
+
+.checkbox-col{width:48px}
+input[type="checkbox"]{
+  width:17px;
+  height:17px;
+  accent-color:var(--primary);
+  cursor:pointer;
+  vertical-align:middle;
+}
+
+.signature-section{
+  position:relative;
+  z-index:1;
+  margin-top:34px;
+  padding-top:20px;
+  border-top:2px solid var(--line);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px 34px;
+}
+
+.signature-section>div{
+  min-height:88px;
+  padding:2px 5px;
+}
+
+.signature-section p{
+  margin:0;
+  font-weight:700;
+  line-height:1.55;
+}
+
+.sig-line{
+  display:block;
+  width:min(230px,85%);
+  margin-top:38px;
+  border-top:1.5px solid #536070;
+}
+
+.footer-note{
+  position:relative;
+  z-index:1;
+  margin-top:24px;
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+}
+
+@media (max-width:800px){
+  body{padding:78px 8px 30px}
+  .toolbar{top:10px;right:10px;left:10px;justify-content:flex-end}
+  .document-container{padding:13mm 9mm;border-radius:12px}
+  .header h2{font-size:19px}
+  .meta-info{grid-template-columns:1fr;gap:7px}
+  .meta-info>div:last-child{text-align:left}
+  .signature-section{grid-template-columns:1fr;gap:16px}
+}
+
+@media print{
+  @page{size:A4 portrait;margin:8mm}
+  body{padding:0;background:#fff;font-size:12px}
+  .toolbar{display:none!important}
+  .document-container{
+    width:100%;
+    margin:0;
+    padding:8mm 9mm;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .document-container::before{height:4px}
+  .document-container::after{inset:6px;border-radius:0}
+  .editable{
+    background:transparent!important;
+    outline:none!important;
+    color:#000;
+  }
+  .table-wrap{overflow:visible;box-shadow:none;border:1px solid #aaa}
+  table{min-width:0}
+  th,td{font-size:10px;padding:5px 4px}
+  .checkbox-col,.checkbox-col input{display:none!important}
+  tbody tr:has(input[type="checkbox"]:not(:checked)){display:none!important}
+  .header{margin-bottom:12px;padding-bottom:8px}
+  .header h2{font-size:18px}
+  .content-body{line-height:1.55;margin-bottom:10px}
+  .signature-section{margin-top:18px;gap:20px}
+  .sig-line{margin-top:25px}
+  .footer-note{display:none}
+}
+
+.item-controls{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:0 0 10px;
+}
+.item-controls-title{
+  color:var(--primary-dark);
+  font-weight:800;
+  font-size:15px;
+}
+.add-item-btn{
+  border:0;
+  border-radius:10px;
+  padding:10px 15px;
+  color:#fff;
+  background:linear-gradient(135deg,#2e7d52,#1f6240);
+  box-shadow:0 7px 18px rgba(31,98,64,.20);
+  cursor:pointer;
+  font:700 14px/1 'Noto Sans Oriya','Nirmala UI',sans-serif;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.add-item-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 23px rgba(31,98,64,.27);
+}
+.delete-item-btn{
+  border:0;
+  border-radius:7px;
+  padding:5px 8px;
+  color:#9b2c2c;
+  background:#fff0f0;
+  cursor:pointer;
+  font-size:12px;
+}
+.delete-item-btn:hover{background:#ffe0e0}
+.item-name-input{
+  width:100%;
+  min-width:150px;
+  border:1px solid transparent;
+  border-radius:5px;
+  padding:4px 5px;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  font-weight:600;
+}
+.item-name-input:focus{
+  outline:1px solid var(--accent);
+  background:#fffdf2;
+}
+@media(max-width:800px){
+  .item-controls{align-items:stretch;flex-direction:column}
+}
+@media print{
+  .item-controls,.delete-col{display:none!important}
+  .item-name-input{border:0!important;background:transparent!important;padding:0}
+}
+
+
+#languageSelector{
+  appearance:auto;
+  min-width:130px;
+  padding:10px 12px;
+  color:var(--primary);
+  background:#fff;
+  border:1px solid var(--line);
+  box-shadow:0 8px 24px rgba(23,54,79,.12);
+  cursor:pointer;
+}
+#languageSelector option{color:#172033;background:#fff}
+@media(max-width:800px){
+  #languageSelector{min-width:112px}
+}
+
+
+/* Christian marriage watermark */
+.document-container::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:7px;
+  background:linear-gradient(90deg,var(--primary),var(--accent),var(--primary));
+  z-index:3;
+}
+
+.document-container .christian-watermark{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+  opacity:.075;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(200,148,62,.22), transparent 20%),
+    linear-gradient(180deg, transparent 0%, rgba(35,78,112,.025) 100%);
+}
+
+.christian-watermark::before{
+  content:"✝";
+  position:absolute;
+  left:50%;
+  top:46%;
+  transform:translate(-50%,-50%);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:230px;
+  line-height:1;
+  color:#234e70;
+  text-shadow:0 5px 20px rgba(35,78,112,.16);
+}
+
+.christian-watermark::after{
+  content:"♡  Saura Site  ♡";
+  position:absolute;
+  left:50%;
+  top:62%;
+  transform:translate(-50%,-50%) rotate(-10deg);
+  white-space:nowrap;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:34px;
+  font-weight:700;
+  letter-spacing:5px;
+  color:#c8943e;
+  text-transform:none;
+}
+
+.marriage-doves{
+  position:absolute;
+  left:50%;
+  top:30%;
+  transform:translateX(-50%);
+  width:80%;
+  height:100px;
+  text-align:center;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:48px;
+  letter-spacing:90px;
+  color:#234e70;
+}
+
+.marriage-doves::before{
+  content:"🕊     🕊";
+}
+
+.watermark-ring{
+  position:absolute;
+  left:50%;
+  top:44%;
+  width:310px;
+  height:310px;
+  transform:translate(-50%,-50%);
+  border:2px solid rgba(200,148,62,.35);
+  border-radius:50%;
+  box-shadow:
+    0 0 0 12px rgba(200,148,62,.045),
+    0 0 0 28px rgba(35,78,112,.025);
+}
+
+.watermark-ring::after{
+  content:"❦";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-size:42px;
+  color:#c8943e;
+}
+
+.document-container > *:not(.christian-watermark){
+  position:relative;
+  z-index:1;
+}
+
+@media print{
+  body{background:#fff !important;padding:0 !important}
+  .toolbar{display:none !important}
+  .document-container{
+    box-shadow:none !important;
+    border-radius:0 !important;
+    border:0 !important;
+  }
+  .christian-watermark{
+    opacity:.06 !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+        <select id="languageSelector" class="action-btn secondary" aria-label="Language" title="Choose Language">
+          <option value="or">ଓଡ଼ିଆ</option>
+          <option value="hi">हिन्दी</option>
+          <option value="en">English</option>
+          <option value="te">తెలుగు</option>
+        </select>
+        <button id="printBtn" class="action-btn" onclick="window.print()">🖨️ Print / PDF</button>
+        <button id="selectAllBtn" class="action-btn secondary" onclick="document.querySelectorAll('input[type="checkbox"]').forEach(c=>c.checked=true)">✓ Select All</button>
+      </div>
+
+<div class="document-container">
+<div class="christian-watermark" aria-hidden="true">
+  <div class="marriage-doves"></div>
+  <div class="watermark-ring"></div>
+</div>
+    <div class="header">
+        <h2>ସୌରା ବାପଟିଷ୍ଟ ଖ୍ରୀଷ୍ଟିୟାନ ମଣ୍ଡଳୀ ସମିଳନୀ</h2>
+        <p>ବେଥନୀ ବଙ୍ଗଳା, ସେରଙ୍ଗ</p>
+    </div>
+
+    <div class="meta-info">
+        <div>ରେଜ. ନ . - <span contenteditable="true" class="editable">୮୪୪୫/୭୯୮</span></div>
+        <div>ତା : <span contenteditable="true" class="editable">୨୬.୦୨.୨୦୨୫</span></div>
+    </div>
+
+    <div class="content-body">
+        <p>
+            <span contenteditable="true" class="editable">ଏରିଆ ର ନାମ </span> ଏରିଆ, <br>
+            <span contenteditable="true" class="editable">ମଣ୍ଡଳୀର ନାମ </span> ମଣ୍ଡଳୀର ଶ୍ରୀମତୀ <span contenteditable="true" class="editable">କନ୍ୟାର ମାତାଙ୍କ ନାମ </span> ଓ ଶ୍ରୀ <span contenteditable="true" class="editable">କନ୍ୟାର ପିତାଙ୍କ ନାମ </span> ଙ୍କ <span contenteditable="true" class="editable">ଏକମାତ୍ର</span> କନ୍ୟା ଶ୍ରୀମତୀ <span contenteditable="true" class="editable">କନ୍ୟାଙ୍କ ନାମ </span>ଙ୍କ ସହ <span contenteditable="true" class="editable">ବରଙ୍କ ମଣ୍ଡଳୀର ନାମ</span> ମଣ୍ଡଳୀର ଶ୍ରୀ <span contenteditable="true" class="editable">ବରଙ୍କ ପିତାଙ୍କ ନାମ</span> ଓ ଶ୍ରୀମତୀ <span contenteditable="true" class="editable">ବରଙ୍କ ମତାଙ୍କ ନାମ</span> ଙ୍କ <span contenteditable="true" class="editable">ଏକମାତ୍ର</span> ପୁତ୍ର ଶ୍ରୀ <span contenteditable="true" class="editable">ବରଙ୍କ ନାମ</span> ତା- <span contenteditable="true" class="editable">୦୪ .୦୨ .୨୦୨୬</span> ରିଖ <span contenteditable="true" class="editable">ବୁଧବାର</span> ଦିନ ବାଇବଲ ଲିଖିତ ବାକ୍ୟାନୁସାରେ- (“ମନୁଷ୍ୟ ଏକାକୀ ଥିବା ଭଲ ନୁହେଁ”। ଆଦି ୨:୧୮ ) ଖ୍ରୀଷ୍ଟୀୟ ବିଧି-ବିଧାନ ଓ ନୀତି ନିୟମ କ୍ରମେ ପୌରୋହିତଙ୍କ ଦ୍ବାରା ବିବାହ ସମ୍ପନ କରାଗଲା ।
+        </p>
+        <p>ଉକ୍ତ ସମୟରେ କନ୍ୟାର ପିତା, ମାତା, ବନ୍ଧୁ ଓ ପ୍ରିୟଜନଙ୍କ ଆଶୀର୍ବାଦକ ରୂପ ଉପହାରଗୁଡ଼ିକର ତାଲିକା ସମୂହ, ଯଥା :</p>
+    </div>
+
+    <div class="item-controls">
+        <div class="item-controls-title">ସାମଗ୍ରୀ ତାଲିକା</div>
+        <button type="button" class="add-item-btn" onclick="addItem()">＋ ନୂତନ ସାମଗ୍ରୀ ଯୋଡନ୍ତୁ</button>
+    </div>
+    <div class="table-wrap">
+<table>
+        <thead>
+            <tr>
+                <th class="checkbox-col">Select</th>
+                <th>କ୍ର. ନ.</th>
+                <th>ସାମଗ୍ରୀ ବିବରଣୀ</th>
+                <th>ପରିମାଣ</th>
+                <th>ମୋଟ (ମୂଲ୍ୟ )</th><th class="delete-col">କାର୍ଯ୍ୟ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧</td><td>ସୁନା ହାର</td><td><span contenteditable="true" class="editable">୨୦.୭୦ ଗ୍ରାମ</span></td><td><span contenteditable="true" class="editable">୩,୭୫,୭୫୩<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୨</td><td>ସୁନା କାନ ଫୁଲ</td><td><span contenteditable="true" class="editable">-</span></td><td><span contenteditable="true" class="editable">-<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୩</td><td>ରୂପା- ପାଉଁଞ୍ଜି ଓ ଝୁଣ୍ଟିଆ</td><td><span contenteditable="true" class="editable">-</span></td><td><span contenteditable="true" class="editable">୬,୦୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୪</td><td>ସୁନା ଚେନ ଓ ଲକେଟ</td><td><span contenteditable="true" class="editable">-</span></td><td><span contenteditable="true" class="editable">୮୬,୦୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୫</td><td>ସୁନା ମୋଦୀ</td><td><span contenteditable="true" class="editable">୨.୫ ଗ୍ରାମ</span></td><td><span contenteditable="true" class="editable">୨୧,୦୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୬</td><td>ପଲଙ୍କ ସେଟ</td><td><span contenteditable="true" class="editable">୧</span></td><td><span contenteditable="true" class="editable">୨୭,୭୯୭<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୭</td><td>ଚୌକି</td><td><span contenteditable="true" class="editable">୨</span></td><td><span contenteditable="true" class="editable">୨,୬୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୮</td><td>ସୋଫା ସେଟ୍</td><td><span contenteditable="true" class="editable">୧</span></td><td><span contenteditable="true" class="editable">୨୨,୦୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୯</td><td>ଡ୍ରେସିଂ ଟେବଲ</td><td><span contenteditable="true" class="editable">୧</span></td><td><span contenteditable="true" class="editable">୧୦,୦୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୦</td><td>ଆଲମୀରା</td><td><span contenteditable="true" class="editable">୧</span></td><td><span contenteditable="true" class="editable">୧୬,୫୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୧</td><td>ଟେବଲ ପଙ୍ଖ।</td><td><span contenteditable="true" class="editable">୧</span></td><td><span contenteditable="true" class="editable">୨,୨୫୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୨</td><td>ଗ୍ରାଇନ୍ଡର</td><td><span contenteditable="true" class="editable">୧</span></td><td><span contenteditable="true" class="editable">୩,୩୫୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୩</td><td>କାନ୍ଥ ଘଣ୍ଟା</td><td><span contenteditable="true" class="editable">୧</span></td><td><span contenteditable="true" class="editable">୧,୩୪୫<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୪</td><td>କାର୍ପେଟ</td><td><span contenteditable="true" class="editable">୧</span></td><td><span contenteditable="true" class="editable">୯୨୭<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୫</td><td>ରୋଷେଇ ସାମଗ୍ରୀ ସମୂହ</td><td><span contenteditable="true" class="editable">୪୦</span></td><td><span contenteditable="true" class="editable">୩୦,୬୪୬<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୬</td><td>ପିତ୍ତଳ ସାମଗ୍ରୀ ସମୂହ</td><td><span contenteditable="true" class="editable">୪</span></td><td><span contenteditable="true" class="editable">୭,୨୫୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୭</td><td>ଷ୍ଟିଲ ହାଣ୍ଡି</td><td><span contenteditable="true" class="editable">୨</span></td><td><span contenteditable="true" class="editable">୮୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୮</td><td>ରସ ହାଣ୍ଡି</td><td><span contenteditable="true" class="editable">୩</span></td><td><span contenteditable="true" class="editable">୧,୫୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୧୯</td><td>ଲୁହା ସାମଗ୍ରୀ ସମୂହ</td><td><span contenteditable="true" class="editable">୧୦</span></td><td><span contenteditable="true" class="editable">୩,୦୨୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୨୦</td><td>ଷ୍ଟିଲ ବାଲଟି</td><td><span contenteditable="true" class="editable">୪</span></td><td><span contenteditable="true" class="editable">୧,୪୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୨୧</td><td>ଶାଢ଼ୀ</td><td><span contenteditable="true" class="editable">୩</span></td><td><span contenteditable="true" class="editable">୧,୮୫୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୨୨</td><td>ଆୟରନ ବକ୍ସ</td><td><span contenteditable="true" class="editable">୧</span></td><td><span contenteditable="true" class="editable">୭୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୨୩</td><td>ଧାନ</td><td><span contenteditable="true" class="editable">୩୩ ପୁଟି</span></td><td><span contenteditable="true" class="editable">-<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୨୪</td><td>ନଗଦ ରାଶି</td><td><span contenteditable="true" class="editable">-</span></td><td><span contenteditable="true" class="editable">୫୦,୦୦୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+            <tr><td class="checkbox-col"><input type="checkbox" checked></td><td>୨୫</td><td>ହାତ ଘଣ୍ଟା ଓ ସୁନା ମୋଦୀ</td><td><span contenteditable="true" class="editable">-</span></td><td><span contenteditable="true" class="editable">୭୦,୧୯୦<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td></tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" style="text-align: right; font-weight: bold;">ସର୍ବ ମୋଟ / Grand Total</td>
+                <td><span id="grandTotal" contenteditable="true" class="editable">୭,୪୨,୮୭୮</span></td><td class="delete-col"></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+    <div class="signature-section">
+        <div>
+            <p>କନ୍ୟା ଓ ବର ଙ୍କ ସ୍ବାକ୍ଷର :</p>
+            <div class="sig-line"></div>
+        </div>
+        <div>
+            <p>ମାତା ଓ ଭାଇଙ୍କ ସ୍ବାକ୍ଷର :</p>
+            <div class="sig-line"></div>
+        </div>
+        <div>
+            <p>ମାତା ପିତାଙ୍କ ସ୍ବାକ୍ଷର :</p>
+            <div class="sig-line"></div>
+        </div>
+        <div>
+            <p><span contenteditable="true" class="editable">କନ୍ୟା ପକ୍ଷ</span> ମଣ୍ଡଳୀର କର୍ମକର୍ତ୍ତାଙ୍କ ସ୍ବାକ୍ଷର :</p>
+            <div class="sig-line"></div>
+        </div>
+        <div>
+            <p><span contenteditable="true" class="editable">ବର ପକ୍ଷ</span> ମଣ୍ଡଳୀର କର୍ମକର୍ତ୍ତାଙ୍କ ସ୍ବାକ୍ଷର :</p>
+            <div class="sig-line"></div>
+        </div>
+    </div>
+    <div class="footer-note">ଦଲିଲଟି ସମ୍ପାଦନଯୋଗ୍ୟ — ହଳଦିଆ ଚିହ୍ନିତ ଅଂଶରେ କ୍ଲିକ୍ କରି ତଥ୍ୟ ପରିବର୍ତ୍ତନ କରନ୍ତୁ।</div>
+</div>
+
+
+<script>
+(function(){
+  function getItemRows(){
+    return Array.from(document.querySelectorAll('tbody tr'));
+  }
+
+  function renumberItems(){
+    getItemRows().forEach(function(row,index){
+      var serialCell = row.children[1];
+      if(serialCell) serialCell.textContent = toOdiaDigits(index + 1);
+    });
+  }
+
+  function toOdiaDigits(value){
+    var map = {'0':'୦','1':'୧','2':'୨','3':'୩','4':'୪','5':'୫','6':'୬','7':'୭','8':'୮','9':'୯'};
+    return String(value).replace(/[0-9]/g, function(d){ return map[d]; });
+  }
+
+  function parseAmount(text){
+    if(text == null) return 0;
+
+    // Convert Odia numerals to Western numerals.
+    var odia = {'୦':'0','୧':'1','୨':'2','୩':'3','୪':'4','୫':'5','୬':'6','୭':'7','୮':'8','୯':'9'};
+    text = String(text).replace(/[୦-୯]/g, function(d){ return odia[d]; });
+
+    // Keep only digits and decimal point. Commas and currency symbols are ignored.
+    text = text.replace(/,/g,'').replace(/[^\d.]/g,'');
+    var n = parseFloat(text);
+    return isFinite(n) ? n : 0;
+  }
+
+  function formatOdiaNumber(number){
+    var rounded = Math.round(number);
+    var western = rounded.toLocaleString('en-IN');
+    var lang = localStorage.getItem('jautukLanguage') || 'or';
+    return convertDigits(western, lang);
+  }
+
+  function getPriceFromRow(row){
+    // Column 5 is always the price/value column:
+    // 0 = checkbox, 1 = serial, 2 = item, 3 = quantity, 4 = price.
+    var priceCell = row.children[4];
+    if(!priceCell) return 0;
+
+    // Support both existing contenteditable spans and future inputs.
+    var input = priceCell.querySelector('input');
+    if(input) return parseAmount(input.value);
+
+    return parseAmount(priceCell.innerText || priceCell.textContent);
+  }
+
+  function updateGrandTotal(){
+    var total = 0;
+
+    getItemRows().forEach(function(row){
+      // Only checked rows are included when calculating the document total.
+      // If a row is unchecked, it is excluded from printing as well.
+      var checkbox = row.querySelector('input[type="checkbox"]');
+      if(!checkbox || checkbox.checked){
+        total += getPriceFromRow(row);
+      }
+    });
+
+    var totalEl = document.getElementById('grandTotal');
+    if(totalEl){
+      totalEl.textContent = formatOdiaNumber(total);
+    }
+  }
+
+  function updateGrandTotal(){
+    var total = 0;
+    getItemRows().forEach(function(row){
+      var cells = row.children;
+      if(cells.length >= 5) total += parseAmount(cells[4].innerText || cells[4].textContent);
+    });
+    var totalEl = document.getElementById('grandTotal');
+    if(totalEl) totalEl.textContent = formatOdiaNumber(total);
+  }
+
+  window.addItem = function(){
+    var tbody = document.querySelector('table tbody');
+    if(!tbody) return;
+
+    var nextNumber = getItemRows().length + 1;
+    var activeLang = localStorage.getItem('jautukLanguage') || 'or';
+    var row = document.createElement('tr');
+    row.innerHTML =
+      '<td class="checkbox-col"><input type="checkbox" checked></td>' +
+      '<td>' + convertDigits(nextNumber, activeLang) + '</td>' +
+      '<td><input class="item-name-input" type="text" placeholder="ସାମଗ୍ରୀର ନାମ"></td>' +
+      '<td><span contenteditable="true" class="editable">୧</span></td>' +
+      '<td><span contenteditable="true" class="editable">୦</span></td>' +
+      '<td class="delete-col"><button type="button" class="delete-item-btn" onclick="deleteItem(this)">✕</button></td>';
+    tbody.appendChild(row);
+
+    var input = row.querySelector('.item-name-input');
+    if(input) input.focus();
+    renumberItems();
+    updateGrandTotal();
+  };
+
+  window.deleteItem = function(button){
+    var row = button.closest('tr');
+    if(!row) return;
+    if(confirm('ଏହି ସାମଗ୍ରୀକୁ ତାଲିକାରୁ ବାହାର କରିବେ କି?')){
+      row.remove();
+      renumberItems();
+      updateGrandTotal();
+    }
+  };
+
+  document.addEventListener('input', function(e){
+    if(e.target.closest('tbody')){
+      updateGrandTotal();
+    }
+  });
+
+  document.addEventListener('change', function(e){
+    if(e.target.matches('input[type="checkbox"]')){
+      updateGrandTotal();
+    }
+  });
+
+  // Preserve the existing Print behavior while ensuring numbering is correct.
+  window.addEventListener('beforeprint', function(){
+    renumberItems();
+    updateGrandTotal();
+  });
+
+  renumberItems();
+  updateGrandTotal();
+})();
+</script>
+
+
+<script>
+(function(){
+  const LANGS = {
+    or: {
+      htmlLang: "or",
+      title: "ବିବାହ ଉପହାର ତାଲିକା — ସୌରା ବାପଟିଷ୍ଟ ଖ୍ରୀଷ୍ଟିୟାନ ମଣ୍ଡଳୀ",
+      print: "🖨️ ପ୍ରିଣ୍ଟ / PDF",
+      selectAll: "✓ ସମସ୍ତ ଚୟନ",
+      itemTitle: "ସାମଗ୍ରୀ ତାଲିକା",
+      addItem: "＋ ନୂତନ ସାମଗ୍ରୀ ଯୋଡନ୍ତୁ",
+      select: "ଚୟନ",
+      serial: "କ୍ର. ନ.",
+      item: "ସାମଗ୍ରୀ ବିବରଣୀ",
+      quantity: "ପରିମାଣ",
+      total: "ମୋଟ (ମୂଲ୍ୟ)",
+      action: "କାର୍ଯ୍ୟ",
+      grand: "ସର୍ବ ମୋଟ",
+      sig1: "କନ୍ୟା ଓ ବର ଙ୍କ ସ୍ବାକ୍ଷର :",
+      sig2: "ମାତା ଓ ଭାଇଙ୍କ ସ୍ବାକ୍ଷର :",
+      sig3: "ମାତା ପିତାଙ୍କ ସ୍ବାକ୍ଷର :",
+      brideOfficer: "କନ୍ୟା ପକ୍ଷ",
+      groomOfficer: "ବର ପକ୍ଷ",
+      officerTail: "ମଣ୍ଡଳୀର କର୍ମକର୍ତ୍ତାଙ୍କ ସ୍ବାକ୍ଷର :",
+      area: "ଏରିଆ ର ନାମ",
+      church: "ମଣ୍ଡଳୀର ନାମ",
+      brideMother: "କନ୍ୟାର ମାତାଙ୍କ ନାମ",
+      brideFather: "କନ୍ୟାର ପିତାଙ୍କ ନାମ",
+      bride: "କନ୍ୟାଙ୍କ ନାମ",
+      groomChurch: "ବରଙ୍କ ମଣ୍ଡଳୀର ନାମ",
+      groomFather: "ବରଙ୍କ ପିତାଙ୍କ ନାମ",
+      groomMother: "ବରଙ୍କ ମାତାଙ୍କ ନାମ",
+      groom: "ବରଙ୍କ ନାମ",
+      only: "ଏକମାତ୍ର",
+      weekday: "ବୁଧବାର",
+      intro1: "ଏରିଆ ର ନାମ ଏରିଆ,",
+      intro2: "ମଣ୍ଡଳୀର ନାମ ମଣ୍ଡଳୀର ଶ୍ରୀମତୀ କନ୍ୟାର ମାତାଙ୍କ ନାମ ଓ ଶ୍ରୀ କନ୍ୟାର ପିତାଙ୍କ ନାମ ଙ୍କ ଏକମାତ୍ର କନ୍ୟା ଶ୍ରୀମତୀ କନ୍ୟାଙ୍କ ନାମଙ୍କ ସହ ବରଙ୍କ ମଣ୍ଡଳୀର ନାମ ମଣ୍ଡଳୀର ଶ୍ରୀ ବରଙ୍କ ପିତାଙ୍କ ନାମ ଓ ଶ୍ରୀମତୀ ବରଙ୍କ ମାତାଙ୍କ ନାମ ଙ୍କ ଏକମାତ୍ର ପୁତ୍ର ଶ୍ରୀ ବରଙ୍କ ନାମ ତା- ୦୪ .୦୨ .୨୦୨୬ ରିଖ ବୁଧବାର ଦିନ ବାଇବଲ ଲିଖିତ ବାକ୍ୟାନୁସାରେ- (“ମନୁଷ୍ୟ ଏକାକୀ ଥିବା ଭଲ ନୁହେଁ”। ଆଦି ୨:୧୮ ) ଖ୍ରୀଷ୍ଟୀୟ ବିଧି-ବିଧାନ ଓ ନୀତି ନିୟମ କ୍ରମେ ପୌରୋହିତଙ୍କ ଦ୍ବାରା ବିବାହ ସମ୍ପନ କରାଗଲା ।",
+      giftIntro: "ଉକ୍ତ ସମୟରେ କନ୍ୟାର ପିତା, ମାତା, ବନ୍ଧୁ ଓ ପ୍ରିୟଜନଙ୍କ ଆଶୀର୍ବାଦକ ରୂପ ଉପହାରଗୁଡ଼ିକର ତାଲିକା ସମୂହ, ଯଥା :",
+      placeholder: "ସାମଗ୍ରୀର ନାମ",
+      deleteConfirm: "ଏହି ସାମଗ୍ରୀକୁ ତାଲିକାରୁ ବାହାର କରିବେ କି?",
+      footer: "ଦଲିଲଟି ସମ୍ପାଦନଯୋଗ୍ୟ — ହଳଦିଆ ଚିହ୍ନିତ ଅଂଶରେ କ୍ଲିକ୍ କରି ତଥ୍ୟ ପରିବର୍ତ୍ତନ କରନ୍ତୁ।",
+      items: ["ସୁନା ହାର","ସୁନା କାନ ଫୁଲ","ରୂପା- ପାଉଁଞ୍ଜି ଓ ଝୁଣ୍ଟିଆ","ସୁନା ଚେନ ଓ ଲକେଟ","ସୁନା ମୋଦୀ","ପଲଙ୍କ ସେଟ","ଚୌକି","ସୋଫା ସେଟ୍","ଡ୍ରେସିଂ ଟେବଲ","ଆଲମୀରା","ଟେବଲ ପଙ୍ଖ।","ଗ୍ରାଇନ୍ଡର","କାନ୍ଥ ଘଣ୍ଟା","କାର୍ପେଟ","ରୋଷେଇ ସାମଗ୍ରୀ ସମୂହ","ପିତ୍ତଳ ସାମଗ୍ରୀ ସମୂହ","ଷ୍ଟିଲ ହାଣ୍ଡି","ରସ ହାଣ୍ଡି","ଲୁହା ସାମଗ୍ରୀ ସମୂହ","ଷ୍ଟିଲ ବାଲଟି","ଶାଢ଼ୀ","ଆୟରନ ବକ୍ସ","ଧାନ","ନଗଦ ରାଶି","ହାତ ଘଣ୍ଟା ଓ ସୁନା ମୋଦୀ"]
+    },
+    hi: {
+      htmlLang: "hi",
+      title: "विवाह उपहार सूची — सौरा बैपटिस्ट क्रिश्चियन मंडली",
+      print: "🖨️ प्रिंट / PDF",
+      selectAll: "✓ सभी चुनें",
+      itemTitle: "सामग्री सूची",
+      addItem: "＋ नई सामग्री जोड़ें",
+      select: "चयन",
+      serial: "क्र. सं.",
+      item: "सामग्री विवरण",
+      quantity: "मात्रा",
+      total: "कुल (मूल्य)",
+      action: "कार्य",
+      grand: "कुल योग",
+      sig1: "कन्या एवं वर के हस्ताक्षर :",
+      sig2: "माता एवं भाई के हस्ताक्षर :",
+      sig3: "माता-पिता के हस्ताक्षर :",
+      brideOfficer: "कन्या पक्ष",
+      groomOfficer: "वर पक्ष",
+      officerTail: "मंडली के अधिकारी के हस्ताक्षर :",
+      intro1: "क्षेत्र का नाम क्षेत्र,",
+      intro2: "मंडली के नाम की श्रीमती कन्या की माता का नाम और श्री कन्या के पिता का नाम की एकमात्र पुत्री श्रीमती कन्या का नाम का विवाह वर की मंडली के नाम की मंडली के श्री वर के पिता का नाम और श्रीमती वर की माता का नाम के एकमात्र पुत्र श्री वर का नाम के साथ दिनांक 04.02.2026 बुधवार को बाइबल के लिखित वचन के अनुसार — “मनुष्य का अकेला रहना अच्छा नहीं” (उत्पत्ति 2:18) — ईसाई विधि-विधान एवं नियमों के अनुसार पुरोहित द्वारा संपन्न किया गया।",
+      giftIntro: "उक्त अवसर पर कन्या के पिता, माता, मित्रों एवं प्रियजनों द्वारा आशीर्वाद स्वरूप दिए गए उपहारों की सूची इस प्रकार है :",
+      placeholder: "सामग्री का नाम",
+      deleteConfirm: "क्या आप इस सामग्री को सूची से हटाना चाहते हैं?",
+      footer: "यह दस्तावेज़ संपादन योग्य है — पीले रंग से चिह्नित भाग पर क्लिक करके जानकारी बदलें।",
+      items: ["सोने का हार","सोने की बालियाँ","चाँदी की पायल और झुन्टिया","सोने की चेन और लॉकेट","सोने की अंगूठी","पलंग सेट","कुर्सी","सोफा सेट","ड्रेसिंग टेबल","अलमारी","टेबल पंखा","ग्राइंडर","दीवार घड़ी","कालीन","रसोई के सामान","पीतल के सामान","स्टील का बर्तन","रस का बर्तन","लोहे के सामान","स्टील की बाल्टी","साड़ी","आयरन बॉक्स","धान","नकद राशि","हाथ घड़ी और सोने की अंगूठी"]
+    },
+    en: {
+      htmlLang: "en",
+      title: "Marriage Gift List — Saura Baptist Christian Church",
+      print: "🖨️ Print / PDF",
+      selectAll: "✓ Select All",
+      itemTitle: "Item List",
+      addItem: "＋ Add New Item",
+      select: "Select",
+      serial: "Sl. No.",
+      item: "Item Description",
+      quantity: "Quantity",
+      total: "Total (Value)",
+      action: "Action",
+      grand: "Grand Total",
+      sig1: "Signature of Bride & Groom:",
+      sig2: "Signature of Mother & Brother:",
+      sig3: "Signature of Parents:",
+      brideOfficer: "Bride's Side",
+      groomOfficer: "Groom's Side",
+      officerTail: "Church Officer's Signature:",
+      intro1: "Area Name, Area,",
+      intro2: "Mrs. Bride's Mother's Name and Mr. Bride's Father's Name of Church Name, parents of their only daughter Mrs. Bride's Name, were joined in marriage with Mr. Groom's Name, the only son of Mr. Groom's Father's Name and Mrs. Groom's Mother's Name of Groom's Church Name, on 04.02.2026, Wednesday, according to the written Word of the Bible — “It is not good that man should be alone” (Genesis 2:18) — and the marriage was solemnized by the priest according to Christian rites and regulations.",
+      giftIntro: "At that time, the following gifts were presented as blessings by the bride's father, mother, relatives and loved ones:",
+      placeholder: "Item name",
+      deleteConfirm: "Do you want to remove this item from the list?",
+      footer: "This document is editable — click the yellow highlighted areas to change the information.",
+      items: ["Gold Necklace","Gold Earrings","Silver Anklets and Jhuntia","Gold Chain and Locket","Gold Ring","Bed Set","Chair","Sofa Set","Dressing Table","Almirah","Table Fan","Grinder","Wall Clock","Carpet","Kitchen Items","Brass Items","Steel Pot","Ras Pot","Iron Items","Steel Bucket","Saree","Iron Box","Paddy","Cash Amount","Wrist Watch and Gold Ring"]
+    },
+    te: {
+      htmlLang: "te",
+      title: "వివాహ బహుమతి జాబితా — సౌరా బాప్టిస్ట్ క్రైస్తవ సంఘం",
+      print: "🖨️ ప్రింట్ / PDF",
+      selectAll: "✓ అన్నింటినీ ఎంచుకోండి",
+      itemTitle: "సామగ్రి జాబితా",
+      addItem: "＋ కొత్త సామగ్రిని జోడించండి",
+      select: "ఎంచుకోండి",
+      serial: "క్ర.సం.",
+      item: "సామగ్రి వివరాలు",
+      quantity: "పరిమాణం",
+      total: "మొత్తం (విలువ)",
+      action: "చర్య",
+      grand: "మొత్తం",
+      sig1: "వధువు మరియు వరుడి సంతకం :",
+      sig2: "తల్లి మరియు సోదరుడి సంతకం :",
+      sig3: "తల్లిదండ్రుల సంతకం :",
+      brideOfficer: "వధువు వైపు",
+      groomOfficer: "వరుడు వైపు",
+      officerTail: "సంఘం అధికారి సంతకం :",
+      intro1: "ప్రాంతం పేరు, ప్రాంతం,",
+      intro2: "మండలి పేరుకు చెందిన శ్రీమతి వధువు తల్లి పేరు మరియు శ్రీ వధువు తండ్రి పేరు యొక్క ఏకైక కుమార్తె శ్రీమతి వధువు పేరు, వరుడి మండలి పేరుకు చెందిన శ్రీ వరుడి తండ్రి పేరు మరియు శ్రీమతి వరుడి తల్లి పేరు యొక్క ఏకైక కుమారుడు శ్రీ వరుడి పేరు తో 04.02.2026 బుధవారం నాడు బైబిల్ వ్రాత ప్రకారం — “మనిషి ఒంటరిగా ఉండటం మంచిది కాదు” (ఆదికాండము 2:18) — క్రైస్తవ విధి విధానాలు మరియు నియమాల ప్రకారం పాస్టర్ ద్వారా వివాహం జరిపించబడింది.",
+      giftIntro: "ఆ సమయంలో వధువు తండ్రి, తల్లి, బంధువులు మరియు ప్రియమైనవారు ఆశీర్వాదంగా అందించిన బహుమతుల జాబితా క్రింది విధంగా ఉంది :",
+      placeholder: "సామగ్రి పేరు",
+      deleteConfirm: "ఈ సామగ్రిని జాబితా నుండి తొలగించాలా?",
+      footer: "ఈ పత్రం సవరించదగినది — సమాచారాన్ని మార్చడానికి పసుపు రంగులో గుర్తించిన భాగాలపై క్లిక్ చేయండి.",
+      items: ["బంగారు హారం","బంగారు చెవి దిద్దులు","వెండి పట్టీలు మరియు ఝుంతియా","బంగారు గొలుసు మరియు లాకెట్","బంగారు ఉంగరం","మంచం సెట్","కుర్చీ","సోఫా సెట్","డ్రెస్సింగ్ టేబుల్","అల్మీరా","టేబుల్ ఫ్యాన్","గ్రైండర్","గోడ గడియారం","కార్పెట్","వంటగది సామగ్రి","ఇత్తడి సామగ్రి","స్టీల్ పాత్ర","రసం పాత్ర","ఇనుప సామగ్రి","స్టీల్ బకెట్","చీర","ఐరన్ బాక్స్","వరి ధాన్యం","నగదు మొత్తం","చేతి గడియారం మరియు బంగారు ఉంగరం"]
+    }
+  };
+
+  function setText(el, text){
+    if(el) el.textContent = text;
+  }
+
+  function editable(label, value){
+    return '<span contenteditable="true" class="editable">'+label+'</span>';
+  }
+
+
+  const LANGUAGE_DIGITS = {
+    en: "0123456789",
+    or: "୦୧୨୩୪୫୬୭୮୯",
+    hi: "०१२३४५६७८९",
+    te: "౦౧౨౩౪౫౬౭౮౯"
+  };
+
+  function toWesternDigits(value){
+    const maps = {
+      "୦":"0","୧":"1","୨":"2","୩":"3","୪":"4","୫":"5","୬":"6","୭":"7","୮":"8","୯":"9",
+      "०":"0","१":"1","२":"2","३":"3","४":"4","५":"5","६":"6","७":"7","८":"8","९":"9",
+      "౦":"0","౧":"1","౨":"2","౩":"3","౪":"4","౫":"5","౬":"6","౭":"7","౮":"8","౯":"9"
+    };
+    return String(value).replace(/[୦-୯०-९౦-౯]/g, d => maps[d] || d);
+  }
+
+  function convertDigits(value, lang){
+    const target = LANGUAGE_DIGITS[lang] || LANGUAGE_DIGITS.en;
+    return toWesternDigits(value).replace(/[0-9]/g, d => target[Number(d)]);
+  }
+
+  function convertAllNumbers(lang){
+    // Serial numbers.
+    document.querySelectorAll("tbody tr").forEach((row, index) => {
+      if(row.children[1]) row.children[1].textContent = convertDigits(index + 1, lang);
+    });
+
+    // All editable numeric fields, including date, registration, quantity and prices.
+    document.querySelectorAll(".editable").forEach(el => {
+      if(el.id === "grandTotal") return;
+      if(el.children.length === 0) {
+        el.textContent = convertDigits(el.textContent, lang);
+      }
+    });
+
+    // Grand Total.
+    const total = document.getElementById("grandTotal");
+    if(total) total.textContent = convertDigits(total.textContent, lang);
+
+    // Any other visible numeric text in the document, excluding controls/scripts.
+    const root = document.querySelector(".document-container");
+    if(!root) return;
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(node => {
+      const parent = node.parentElement;
+      if(!parent) return;
+      if(parent.closest("script,style,select,option,input,textarea")) return;
+      if(parent.closest(".editable")) return;
+      if(parent.closest("tbody td:nth-child(1), tbody td:nth-child(2)")) return;
+      node.nodeValue = convertDigits(node.nodeValue, lang);
+    });
+  }
+
+  function buildContent(lang){
+    const c = document.querySelector(".content-body");
+    if(!c) return;
+    const p1 = lang === "en" ? LANGS.en.intro2 :
+               lang === "hi" ? LANGS.hi.intro2 :
+               lang === "te" ? LANGS.te.intro2 :
+               LANGS.or.intro2;
+    const first = lang === "or" ? LANGS.or.intro1 :
+                  lang === "hi" ? LANGS.hi.intro1 :
+                  lang === "te" ? LANGS.te.intro1 :
+                  LANGS.en.intro1;
+    c.innerHTML =
+      '<p><span contenteditable="true" class="editable">'+first+'</span><br>'+
+      '<span contenteditable="true" class="editable">'+p1+'</span></p>'+
+      '<p>'+LANGS[lang].giftIntro+'</p>';
+  }
+
+  function applyLanguage(lang){
+    if(!LANGS[lang]) lang = "or";
+    const t = LANGS[lang];
+    document.documentElement.lang = t.htmlLang;
+    document.title = t.title;
+
+    setText(document.querySelector("#printBtn"), t.print);
+    setText(document.querySelector("#selectAllBtn"), t.selectAll);
+    setText(document.querySelector(".item-controls-title"), t.itemTitle);
+    setText(document.querySelector(".add-item-btn"), t.addItem);
+
+    const headerH = document.querySelector(".header h2");
+    const headerP = document.querySelector(".header p");
+    setText(headerH, t.title.split(" — ")[0]);
+    setText(headerP,
+      lang === "en" ? "Bethany Bungalow, Serang" :
+      lang === "hi" ? "बेथनी बंगला, सेरंग" :
+      lang === "te" ? "బెతనీ బంగ్లా, సెరాంగ్" :
+      "ବେଥନୀ ବଙ୍ଗଳା, ସେରଙ୍ଗ"
+    );
+
+    const meta = document.querySelectorAll(".meta-info > div");
+    if(meta[0]) meta[0].childNodes[0].nodeValue =
+      lang==="en" ? "Reg. No. - " : lang==="hi" ? "पंजी. नं. - " : lang==="te" ? "రిజి. నం. - " : "ରେଜ. ନ . - ";
+    if(meta[1]) meta[1].childNodes[0].nodeValue =
+      lang==="en" ? "Date: " : lang==="hi" ? "दिनांक: " : lang==="te" ? "తేదీ: " : "ତା : ";
+
+    const th = document.querySelectorAll("thead th");
+    if(th.length >= 6){
+      setText(th[0], t.select);
+      setText(th[1], t.serial);
+      setText(th[2], t.item);
+      setText(th[3], t.quantity);
+      setText(th[4], t.total);
+      setText(th[5], t.action);
+    }
+
+    const totalLabel = document.querySelector("tfoot td");
+    if(totalLabel) setText(totalLabel, t.grand);
+
+    buildContent(lang);
+
+    const rows = Array.from(document.querySelectorAll("tbody tr"));
+    rows.forEach((row, i)=>{
+      if(row.children[2]){
+        const input = row.children[2].querySelector("input");
+        if(input){
+          input.placeholder = t.placeholder;
+        }else if(t.items[i] !== undefined){
+          row.children[2].textContent = t.items[i];
+        }
+      }
+      const del = row.querySelector(".delete-item-btn");
+      if(del) del.title = t.action;
+    });
+
+    document.querySelectorAll(".signature-section > div p").forEach((p,i)=>{
+      if(i===0) setText(p,t.sig1);
+      if(i===1) setText(p,t.sig2);
+      if(i===2) setText(p,t.sig3);
+      if(i===3) p.innerHTML = '<span contenteditable="true" class="editable">'+t.brideOfficer+'</span> '+t.officerTail;
+      if(i===4) p.innerHTML = '<span contenteditable="true" class="editable">'+t.groomOfficer+'</span> '+t.officerTail;
+    });
+
+    setText(document.querySelector(".footer-note"), t.footer);
+
+    document.querySelectorAll(".delete-item-btn").forEach(btn=>{
+      btn.onclick = function(){
+        const row = btn.closest("tr");
+        if(!row) return;
+        if(confirm(t.deleteConfirm)){
+          row.remove();
+          if(window.renumberItems) window.renumberItems();
+          if(window.updateGrandTotal) window.updateGrandTotal();
+        }
+      };
+    });
+
+    // Remember language for the next visit.
+    localStorage.setItem("jautukLanguage", lang);
+
+    // Re-apply font stack for scripts that need it.
+    refreshNumbersAndTotal();
+
+    document.body.style.fontFamily =
+      lang==="or" ? "'Noto Sans Oriya','Nirmala UI','Noto Sans',sans-serif" :
+      "'Noto Sans','Nirmala UI','Segoe UI',sans-serif";
+
+    // Convert all numbers to the numeral system of the selected language.
+    convertAllNumbers(lang);
+  }
+
+  const selector = document.getElementById("languageSelector");
+  const saved = localStorage.getItem("jautukLanguage") || "or";
+  if(selector){
+    selector.value = LANGS[saved] ? saved : "or";
+    selector.addEventListener("change", function(){ applyLanguage(this.value); });
+  }
+
+  function digitize(value, lang){
+    const maps = {
+      or: "୦୧୨୩୪୫୬୭୮୯",
+      te: "౦౧౨౩౪౫౬౭౮౯",
+      hi: "0123456789",
+      en: "0123456789"
+    };
+    const m = maps[lang] || maps.en;
+    return String(value).replace(/[0-9]/g, d => m[d]);
+  }
+
+  function parseMoney(text){
+    const reverse = {"୦":"0","୧":"1","୨":"2","୩":"3","୪":"4","୫":"5","୬":"6","୭":"7","୮":"8","୯":"9",
+                     "౦":"0","౧":"1","౨":"2","౩":"3","౪":"4","౫":"5","౬":"6","౭":"7","౮":"8","౯":"9"};
+    text = String(text || "").replace(/[୦-୯౦-౯]/g, d => reverse[d] || d);
+    text = text.replace(/,/g,"").replace(/[^\d.]/g,"");
+    const n = parseFloat(text);
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  function refreshNumbersAndTotal(){
+    const lang = localStorage.getItem("jautukLanguage") || "or";
+    const rows = Array.from(document.querySelectorAll("tbody tr"));
+    rows.forEach((row,i)=>{
+      if(row.children[1]) row.children[1].textContent = digitize(i+1,lang);
+    });
+    let total = 0;
+    rows.forEach(row=>{
+      if(row.children[4]) total += parseMoney(row.children[4].innerText || row.children[4].textContent);
+    });
+    const totalEl = document.getElementById("grandTotal");
+    if(totalEl){
+      const formatted = Math.round(total).toLocaleString("en-IN");
+      totalEl.textContent = digitize(formatted,lang);
+    }
+  }
+
+  // Override add/delete so dynamically created rows and confirmations follow the selected language.
+  const originalAddItem = window.addItem;
+  window.addItem = function(){
+    originalAddItem();
+    const lang = localStorage.getItem("jautukLanguage") || "or";
+    const rows = document.querySelectorAll("tbody tr");
+    const row = rows[rows.length-1];
+    if(row){
+      const input = row.querySelector(".item-name-input");
+      if(input) input.placeholder = LANGS[lang].placeholder;
+    }
+    refreshNumbersAndTotal();
+  };
+
+  window.deleteItem = function(button){
+    const lang = localStorage.getItem("jautukLanguage") || "or";
+    const row = button.closest("tr");
+    if(!row) return;
+    if(confirm(LANGS[lang].deleteConfirm)){
+      row.remove();
+      refreshNumbersAndTotal();
+    }
+  };
+
+  // Keep totals and serial numbers synchronized after edits, checkbox changes, and language changes.
+  document.addEventListener("input", function(e){
+    if(e.target.closest("tbody")) refreshNumbersAndTotal();
+  });
+  document.addEventListener("change", function(e){
+    if(e.target.matches('input[type="checkbox"]')) refreshNumbersAndTotal();
+  });
+
+  // Initial language.
+  applyLanguage(selector ? selector.value : saved);
+})();
+</script>
+
+</body>
+</html>
