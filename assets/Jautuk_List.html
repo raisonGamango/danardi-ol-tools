@@ -947,11 +947,35 @@ input[type="checkbox"]{
   }
 
   function convertStaticNumbers(lang){
-    // Convert only known editable/static numeric fields, avoiding item names and prices.
-    document.querySelectorAll(".meta-info .editable, .content-body .editable").forEach(el => {
-      el.textContent = convertDigits(el.textContent, lang);
+    // Convert every visible number in the document, including table serials,
+    // quantities, prices, dates, editable fields and the grand total.
+    // Always normalize through Western digits first, so switching languages
+    // repeatedly (Odia -> Hindi -> Telugu -> English -> Odia) works correctly.
+    const skipTags = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "OPTION"]);
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    let node;
+    while((node = walker.nextNode())){
+      if(!node.parentElement || skipTags.has(node.parentElement.tagName)) continue;
+      if(node.parentElement.closest("input, textarea, select, script, style, noscript")) continue;
+      textNodes.push(node);
+    }
+    textNodes.forEach(n => {
+      n.nodeValue = convertDigits(n.nodeValue, lang);
     });
-    // The total is recalculated separately, so do not blindly convert its content twice.
+
+    // Also convert editable/input values when they contain numbers.
+    document.querySelectorAll("input, textarea").forEach(el => {
+      if(typeof el.value === "string" && el.type !== "text") {
+        el.value = convertDigits(el.value, lang);
+      }
+    });
+
+    // Serial numbers are regenerated from their numeric index.
+    renumberItems();
+
+    // Grand total is calculated from normalized values and then displayed in
+    // the selected language's numeral system.
     updateGrandTotal();
   }
 
