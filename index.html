@@ -29,6 +29,10 @@
     html {
       scroll-behavior: smooth;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "DM Sans", sans-serif;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
     body {
       margin: 0;
@@ -37,6 +41,10 @@
       font-family: "DM Sans", system-ui, sans-serif;
       overflow-x: hidden;
       line-height: 1.45;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     .ambient {
@@ -285,6 +293,10 @@
       overflow: hidden;
       cursor: pointer;
       transition: transform .16s ease, box-shadow .16s ease;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
     .tile::before {
       content: "";
@@ -501,6 +513,10 @@
       resize: vertical;
       min-height: 120px;
       font: inherit;
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
     }
 
     :focus {
