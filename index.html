@@ -11,174 +11,606 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
   <style>
-    /* Variables */
-    :root{
-      --night:#03162a;
-      --blue:#0c2b50;
-      --gold:#ffd779;
-      --gold2:#f4b936;
-      --white:#fffaf0;
-      --muted:#c6d5e7;
-      --glass:rgba(8,26,49,.68);
-      --line:rgba(255,221,145,.28);
-      --shadow:0 18px 50px #020b1a70;
-      --container-max:1200px;
-      --gap:18px;
+    :root {
+      --night: #03162a;
+      --blue: #0c2b50;
+      --gold: #ffd779;
+      --gold2: #f4b936;
+      --white: #fffaf0;
+      --muted: #c6d5e7;
+      --glass: rgba(8, 26, 49, .68);
+      --line: rgba(255, 221, 145, .28);
+      --shadow: 0 18px 50px #020b1a70;
+      --container-max: 1200px;
+      --gap: 18px;
     }
 
-    /* Reset and base */
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;font-family:system-ui,-apple-system,"Segoe UI",Roboto,'DM Sans',sans-serif}
-    body{margin:0;background:var(--night);color:var(--white);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden;line-height:1.45}
-
-    /* Ambient background elements (kept light and decorative) */
-    .ambient{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
-    .orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.22;animation:float 12s ease-in-out infinite}
-    .orb.one{width:300px;height:300px;top:8%;left:-120px;background:#1c8c9d}
-    .orb.two{width:220px;height:220px;right:-100px;top:50%;background:#d99b34;animation-delay:-5s}
-
-    /* Layout container */
-    .wrap{width:100%;max-width:var(--container-max);margin:0 auto;padding:20px}
-
-    header{height:86px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;z-index:5}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white)}
-    .brand-mark{width:46px;height:46px;border:1px solid #ffe3a0;border-radius:12px;display:grid;place-items:center;color:var(--gold);font-size:24px;background:linear-gradient(145deg,#fff3c72b,#ffd15b0[...]
-    .brand-name{font:600 1.4rem "Playfair Display",serif;letter-spacing:.01em}
-    .brand-sub{font-size:.68rem;color:#c6d5e7;letter-spacing:.13em;text-transform:uppercase;margin-top:1px}
-
-    .nav{display:flex;align-items:center;gap:10px}
-    .nav a,.nav button{color:#eaf1fb;text-decoration:none;border:0;background:transparent;font:600 .88rem "DM Sans",sans-serif;padding:9px 12px;border-radius:10px}
-    .nav a:hover,.nav a.active,.nav button:hover{background:#ffffff17;color:var(--gold)}
-
-    .pill{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #ffe7a2;border-radius:99px;padding:10px 16px;background:linear-gradient(120deg,#ffe8a3,#f7bd44);color:#[...]
-    .pill.secondary{background:#ffffff0b;color:var(--white);border-color:#ffffff38;box-shadow:none}
-
-    /* Hero */
-    .hero{min-height:420px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:24px;padding:28px 0;position:relative}
-    .hero-copy{position:relative;z-index:2;padding:8px 0}
-    .eyebrow{display:flex;align-items:center;gap:10px;text-transform:uppercase;font-size:.72rem;font-weight:800;letter-spacing:.2em;color:var(--muted);margin-bottom:10px}
-    h1{font:500 clamp(2rem,5vw,3.6rem)/1 "Playfair Display",serif;letter-spacing:-.02em;margin:0 0 10px}
-    h1 em{color:var(--gold);font-weight:500}
-    .hero-lead{font-size:1rem;color:#d7e3f1;max-width:620px;margin-bottom:20px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-
-    .hero-art{min-height:320px;position:relative;border-radius:20px;overflow:hidden;border:1px solid #ffe4a033;box-shadow:var(--shadow);background:linear-gradient(90deg,#06152b35,#06152b00),url('asset[...])}
-    .hero-art .verse-card{position:absolute;left:16px;right:16px;bottom:16px;padding:18px;background:rgba(4,18,37,.64);border-radius:14px}
-
-    /* Sections */
-    .section-title{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:15px 0 22px}
-    .section-title h2{font:500 clamp(1.5rem,3vw,2.2rem) "Playfair Display",serif;margin-bottom:7px}
-    .menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-
-    /* Responsive tile grid: uses auto-fit for responsiveness */
-    .menu-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
-    .tile{--accent:#ffdc86;position:relative;min-height:160px;border-radius:16px;padding:16px;display:flex;flex-direction:column;justify-content:flex-start;gap:10px;border:1px solid rgba(255,221,145,.[...])}
-    .tile-top{display:flex;justify-content:space-between;align-items:flex-start}
-    .tile h3{font:600 1.05rem "Playfair Display",serif;margin:8px 0 6px}
-    .tile p{font-size:.88rem;color:#c3d2e2;margin:0}
-    .tile .arrow{margin-left:auto}
-
-    /* --- New: Blur overlay and bubble/ripple effects for tiles --- */
-    /* Ensure tile is a positioned, overflow-hidden element to contain effects */
-    .tile{overflow:hidden;cursor:pointer;transition:transform .16s ease, box-shadow .16s ease}
-
-    /* Blurred overlay that mirrors the tile background (so the image appears softened above)
-       We use ::before to duplicate the background and blur it. Content sits above via z-index. */
-    .tile::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:inherit;
-      background:inherit; /* picks up inline background-image */
-      background-size:cover;
-      background-position:center;
-      filter:blur(10px) saturate(1.05);
-      opacity:.24;
-      transform:scale(1.12);
-      z-index:0;
-      transition:opacity .28s ease, transform .28s ease;
-      pointer-events:none;
+    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "DM Sans", sans-serif;
+    }
+    body {
+      margin: 0;
+      background: var(--night);
+      color: var(--white);
+      font-family: "DM Sans", system-ui, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.45;
     }
 
-    /* Subtle floating bubble on hover (single decorative bubble) */
-    .tile::after{
-      content:"";
-      position:absolute;
-      left:70%;
-      top:24%;
-      width:0;height:0;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 60%);
-      opacity:0;
-      transform:translate(-50%,-50%) translateY(6px) scale(0.6);
-      transition:width .35s ease, height .35s ease, opacity .35s ease, transform .35s ease;
-      z-index:1; /* above blurred bg but below content */
-      pointer-events:none;
+    .ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
     }
-    .tile:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(3,22,42,0.44)}
-    .tile:hover::after{width:68px;height:68px;opacity:1;transform:translate(-50%,-50%) translateY(-6px) scale(1)}
-
-    /* Guarantee content sits above decorative layers */
-    .tile > *{position:relative;z-index:3}
-
-    /* Click ripple (bubble) — created and removed by JS for multiple ripples */
-    .ripple{
-      position:absolute;
-      border-radius:50%;
-      transform:translate(-50%,-50%) scale(0);
-      background:radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0) 60%);
-      pointer-events:none;
-      z-index:2;
-      animation:ripple .72s cubic-bezier(.2,.8,.2,1);
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: .22;
+      animation: float 12s ease-in-out infinite;
     }
-    @keyframes ripple{
-      to{transform:translate(-50%,-50%) scale(12);opacity:0}
+    .orb.one {
+      width: 300px;
+      height: 300px;
+      top: 8%;
+      left: -120px;
+      background: #1c8c9d;
+    }
+    .orb.two {
+      width: 220px;
+      height: 220px;
+      right: -100px;
+      top: 50%;
+      background: #d99b34;
+      animation-delay: -5s;
     }
 
-    /* Accessibility and focus states */
-    :focus{outline:3px solid #ffd77944;outline-offset:3px}
-    button{cursor:pointer}
-
-    /* Animations */
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-
-    /* Breakpoints */
-    @media (max-width:1024px){
-      .hero{grid-template-columns:1fr;min-height:420px;padding:20px 0}
-      .hero-copy{order:1}
-      .hero-art{order:2;min-height:240px}
+    .wrap {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    @media (max-width:720px){
-      header{height:74px}
-      .brand-name{font-size:1.2rem}
-      .menu-grid{gap:12px}
-      .tile{min-height:140px;padding:12px}
-      .hero-lead{font-size:.98rem}
-      .pill{padding:9px 12px}
+    header {
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      position: relative;
+      z-index: 5;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--white);
+    }
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border: 1px solid #ffe3a0;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 24px;
+      background: linear-gradient(145deg, #fff3c72b, #ffd15b0a);
+      box-shadow: inset 0 0 0 1px rgba(255, 223, 168, .12);
+    }
+    .brand-name {
+      font: 600 1.4rem "Playfair Display", serif;
+      letter-spacing: .01em;
+    }
+    .brand-sub {
+      font-size: .68rem;
+      color: #c6d5e7;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      margin-top: 1px;
     }
 
-    @media (max-width:480px){
-      .wrap{padding:12px}
-      .brand-mark{width:40px;height:40px;font-size:22px}
-      .nav{gap:6px}
-      .nav a{display:none}
-      .hero{padding:12px 0}
-      h1{font-size:1.8rem}
-      .hero-lead{font-size:.95rem}
-      .menu-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
-      .tile{padding:10px;min-height:120px}
-      .hero-art{min-height:180px}
-      .reflection{flex-direction:column;align-items:flex-start}
-      footer{padding-bottom:14px}
-
-      /* Make primary actions full width on very small screens */
-      .hero-actions{flex-direction:column;align-items:stretch}
-      .pill{width:100%;justify-content:center}
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav a, .nav button {
+      color: #eaf1fb;
+      text-decoration: none;
+      border: 0;
+      background: transparent;
+      font: 600 .88rem "DM Sans", sans-serif;
+      padding: 9px 12px;
+      border-radius: 10px;
+    }
+    .nav a:hover, .nav a.active, .nav button:hover {
+      background: #ffffff17;
+      color: var(--gold);
     }
 
-    @media (prefers-reduced-motion:reduce){
-      *{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid #ffe7a2;
+      border-radius: 99px;
+      padding: 10px 16px;
+      background: linear-gradient(120deg, #ffe8a3, #f7bd44);
+      color: #07162e;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 10px 26px rgba(244, 185, 54, .22);
+    }
+    .pill.secondary {
+      background: #ffffff0b;
+      color: var(--white);
+      border-color: #ffffff38;
+      box-shadow: none;
+    }
+
+    .hero {
+      min-height: 420px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 24px;
+      padding: 28px 0;
+      position: relative;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 8px 0;
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .2em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font: 500 clamp(2rem, 5vw, 3.6rem)/1 "Playfair Display", serif;
+      letter-spacing: -.02em;
+      margin: 0 0 10px;
+    }
+    h1 em {
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .subhead {
+      display: block;
+    }
+    .hero-lead {
+      font-size: 1rem;
+      color: #d7e3f1;
+      max-width: 620px;
+      margin-bottom: 20px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-art {
+      min-height: 320px;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #ffe4a033;
+      box-shadow: var(--shadow);
+      background: linear-gradient(90deg, #06152b35, #06152b00), url('assets/hero.jpg') center/cover no-repeat;
+    }
+    .hero-art .verse-card {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      padding: 18px;
+      background: rgba(4, 18, 37, .64);
+      border-radius: 14px;
+      backdrop-filter: blur(4px);
+    }
+    .verse-mark {
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--gold);
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    .verse-card blockquote {
+      margin: 0; 
+      font-size: 1.1rem;
+      font-family: "Playfair Display", serif;
+      color: var(--white);
+    }
+    .verse-card cite {
+      display: block;
+      margin-top: 8px;
+      color: #d6e6f7;
+      font-style: normal;
+      font-size: .8rem;
+      letter-spacing: .02em;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 15px 0 22px;
+    }
+    .section-title h2 {
+      font: 500 clamp(1.5rem, 3vw, 2.2rem) "Playfair Display", serif;
+      margin-bottom: 7px;
+    }
+    .section-title p {
+      margin: 0;
+      color: #cfe0f5;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .tile {
+      --accent: #ffdc86;
+      position: relative;
+      min-height: 160px;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 10px;
+      border: 1px solid rgba(255, 221, 145, .16);
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, .18);
+      color: var(--white);
+      text-align: left;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: inherit;
+      background-size: cover;
+      background-position: center;
+      filter: blur(10px) saturate(1.05);
+      opacity: .24;
+      transform: scale(1.12);
+      z-index: 0;
+      transition: opacity .28s ease, transform .28s ease;
+      pointer-events: none;
+    }
+    .tile::after {
+      content: "";
+      position: absolute;
+      left: 70%;
+      top: 24%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 60%);
+      opacity: 0;
+      transform: translate(-50%, -50%) translateY(6px) scale(0.6);
+      transition: width .35s ease, height .35s ease, opacity .35s ease, transform .35s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .tile:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(3, 22, 42, .44);
+    }
+    .tile:hover::after {
+      width: 68px;
+      height: 68px;
+      opacity: 1;
+      transform: translate(-50%, -50%) translateY(-6px) scale(1);
+    }
+    .tile > * {
+      position: relative;
+      z-index: 3;
+    }
+    .tile-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .number {
+      font-size: .74rem;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.8);
+    }
+    .icon {
+      font-size: 1.2rem;
+      color: var(--gold);
+      background: rgba(7, 22, 46, .29);
+      border-radius: 999px;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+    }
+    .tile h3 {
+      font: 600 1.05rem "Playfair Display", serif;
+      margin: 8px 0 6px;
+    }
+    .tile p {
+      font-size: .88rem;
+      color: #c3d2e2;
+      margin: 0;
+    }
+    .tile .arrow {
+      margin-left: auto;
+    }
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0) 60%);
+      pointer-events: none;
+      z-index: 2;
+      animation: ripple .72s cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes ripple {
+      to {
+        transform: translate(-50%, -50%) scale(12);
+        opacity: 0;
+      }
+    }
+
+    .reflection {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      margin: 30px 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(12, 43, 80, .25);
+      color: var(--white);
+    }
+    .reflection-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 215, 121, .12);
+      color: var(--gold);
+      font-size: 1.6rem;
+    }
+    .reflection p {
+      margin: 0 0 4px;
+      font-size: 1.02rem;
+      color: #eaf4ff;
+    }
+    .reflection small {
+      color: #d5e4f9;
+    }
+
+    footer {
+      padding: 24px 0 10px;
+      color: #dfeaf9;
+    }
+    .footer-brand {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+    footer a {
+      color: #dfeaf9;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--gold);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(18px);
+      background: rgba(4, 18, 37, .9);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: .9rem;
+      opacity: 0;
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events: none;
+      z-index: 999;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 12, 20, .7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s ease, visibility .2s ease;
+      z-index: 1000;
+    }
+    .modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal {
+      width: min(92vw, 520px);
+      background: linear-gradient(180deg, rgba(11, 30, 48, .94), rgba(3, 17, 31, .98));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 22px;
+      padding: 20px 18px 16px;
+      box-shadow: var(--shadow);
+    }
+    .modal-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 215, 121, .12);
+      color: var(--gold);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .modal h2 {
+      margin: 0 0 8px;
+      font: 600 1.5rem "Playfair Display", serif;
+    }
+    .modal p {
+      margin: 0;
+      color: #dfeaf9;
+    }
+    .modal textarea {
+      width: 100%;
+      border-radius: 8px;
+      padding: 8px;
+      background: #021223;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,.04);
+      resize: vertical;
+      min-height: 120px;
+      font: inherit;
+    }
+
+    :focus {
+      outline: 3px solid #ffd77944;
+      outline-offset: 3px;
+    }
+    button {
+      cursor: pointer;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: 420px;
+        padding: 20px 0;
+      }
+      .hero-copy {
+        order: 1;
+      }
+      .hero-art {
+        order: 2;
+        min-height: 240px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        height: 74px;
+      }
+      .brand-name {
+        font-size: 1.2rem;
+      }
+      .menu-grid {
+        gap: 12px;
+      }
+      .tile {
+        min-height: 140px;
+        padding: 12px;
+      }
+      .hero-lead {
+        font-size: .98rem;
+      }
+      .pill {
+        padding: 9px 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        padding: 12px;
+      }
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+      }
+      .nav {
+        gap: 6px;
+      }
+      .nav a {
+        display: none;
+      }
+      .hero {
+        padding: 12px 0;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .hero-lead {
+        font-size: .95rem;
+      }
+      .menu-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+      .tile {
+        padding: 10px;
+        min-height: 120px;
+      }
+      .hero-art {
+        min-height: 180px;
+      }
+      .reflection {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      footer {
+        padding-bottom: 14px;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .pill {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
@@ -216,7 +648,7 @@
       </section>
 
       <section id="explore" aria-labelledby="explore-title">
-        <div class="section-title"><div><h2 id="explore-title">Explore Your <em>Faith</em></h2><p>Discover powerful tools to grow closer to God, seek His guidance, and live a life of purpose.</p></div>
+        <div class="section-title"><div><h2 id="explore-title">Explore Your <em>Faith</em></h2><p>Discover powerful tools to grow closer to God, seek His guidance, and live a life of purpose.</p></div></div>
         <nav class="menu-grid" aria-label="Spiritual tools">
           <button id="bible" onclick="window.location.href='assets/Baibolan_apsele_professional.html';" class="tile" style="--accent:#ffb900; background-image:url('assets/bible.jpg');">
             <div class="tile-top"><div class="number">01</div><div class="icon">✝</div></div>
@@ -275,7 +707,6 @@
           <small>— Jeremiah 29:11</small>
         </div>
       </aside>
-
     </main>
 
     <footer>
@@ -285,7 +716,6 @@
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#home">Home</a><a href="#explore">Spiritual Tools</a><a href="#reflection">Reflection</a></div>
     </footer>
-
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -295,59 +725,99 @@
       <div class="modal-icon" id="modalIcon">✝</div>
       <h2 id="modalTitle">A quiet moment</h2>
       <p id="modalDescription">Take a slow breath. Name what is on your heart, and rest in God's presence for a moment.</p>
-      <div style="margin-top:12px"><textarea id="note" rows="4" style="width:100%;border-radius:8px;padding:8px;background:#021223;color:var(--white);border:1px solid rgba(255,255,255,.04)"></textarea>
+      <div style="margin-top:12px">
+        <textarea id="note" rows="4" aria-label="Your reflection"></textarea>
+      </div>
       <div style="display:flex;gap:8px;margin-top:10px">
-        <button id="saveNote" class="pill">Save Note</button>
-        <button id="copyVerse" class="pill secondary">Copy Verse</button>
-      </div></div>
+        <button id="saveNote" class="pill" type="button">Save Note</button>
+        <button id="copyVerse" class="pill secondary" type="button">Copy Verse</button>
+      </div>
     </div>
   </div>
 
   <script>
-    // Minimal topic data and modal handling (keeps behavior simple and robust)
-    const topics={
-      "Bible":{icon:"✝",description:"Make space to read slowly and carry one truth with you today.",verse:"Your word is a lamp to my feet and a light to my path."},
-      "Prayer Room":{icon:"🙏",description:"Name what is on your heart and bring it to God.",verse:"Cast all your anxiety on him because he cares for you."},
-      "Daily Devotion":{icon:"♡",description:"Let a small moment with God shape your day.",verse:"His mercies are new every morning."},
-      "Daily Plan":{icon:"▦",description:"Choose a simple rhythm: read, pray, act.",verse:"Commit to the Lord whatever you do."}
+    const topics = {
+      "Bible": { icon: "✝", description: "Make space to read slowly and carry one truth with you today.", verse: "Your word is a lamp to my feet and a light to my path." },
+      "Prayer Room": { icon: "🙏", description: "Name what is on your heart and bring it to God.", verse: "Cast all your anxiety on him because he cares for you." },
+      "Daily Devotion": { icon: "♡", description: "Let a small moment with God shape your day.", verse: "His mercies are new every morning." },
+      "Daily Plan": { icon: "▦", description: "Choose a simple rhythm: read, pray, act.", verse: "Commit to the Lord whatever you do." }
     };
 
-    const backdrop=document.getElementById('modalBackdrop');
-    const title=document.getElementById('modalTitle');
-    const desc=document.getElementById('modalDescription');
-    const verse=document.getElementById('modalVerse');
-    const icon=document.getElementById('modalIcon');
-    const note=document.getElementById('note');
-    const toast=document.getElementById('toast');
-    let currentTopic="Bible";
+    const backdrop = document.getElementById('modalBackdrop');
+    const title = document.getElementById('modalTitle');
+    const desc = document.getElementById('modalDescription');
+    const icon = document.getElementById('modalIcon');
+    const note = document.getElementById('note');
+    const toast = document.getElementById('toast');
+    let currentTopic = 'Bible';
 
-    function showToast(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2600)}
-
-    function openTopic(name){currentTopic=name;const t=topics[name]||topics['Bible'];title.textContent=name;desc.textContent=t.description;icon.textContent=t.icon;note.value=localStorage.getItem('stillwater-note-'+currentTopic)||'';backdrop.classList.add('open');document.body.style.overflow='hidden'}
-    function closeTopic(){backdrop.classList.remove('open');document.body.style.overflow=''}
-
-    document.querySelectorAll('[data-topic]').forEach(el=>el.addEventListener('click',()=>openTopic(el.dataset.topic)));
-    document.getElementById('headerPrayer').addEventListener('click',()=>openTopic('Prayer Room'));
-    document.getElementById('closeModal').addEventListener('click',closeTopic);
-    backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeTopic()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTopic()});
-    document.getElementById('saveNote').addEventListener('click',()=>{try{localStorage.setItem('stillwater-note-'+currentTopic,note.value);showToast('Reflection saved on this device.')}catch(e){showToast('Unable to save reflection.')}});
-    document.getElementById('copyVerse').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.querySelector('.verse-card blockquote').textContent);showToast('Verse copied to clipboard.')}catch(e){showToast('Unable to copy verse.')}});
-
-    // Service worker registration (only when served over https)
-    if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-      window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2600);
     }
 
-    // --- New: ripple (bubble) effect on click for .tile elements ---
-    (function(){
-      function createRipple(e){
+    function openTopic(name) {
+      currentTopic = name;
+      const t = topics[name] || topics['Bible'];
+      title.textContent = name;
+      desc.textContent = t.description;
+      icon.textContent = t.icon;
+      note.value = localStorage.getItem('stillwater-note-' + currentTopic) || '';
+      backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTopic() {
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-topic]').forEach(el => {
+      el.addEventListener('click', () => openTopic(el.dataset.topic));
+    });
+
+    document.getElementById('headerPrayer').addEventListener('click', () => openTopic('Prayer Room'));
+    document.getElementById('closeModal').addEventListener('click', closeTopic);
+    backdrop.addEventListener('click', e => {
+      if (e.target === backdrop) closeTopic();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeTopic();
+    });
+
+    document.getElementById('saveNote').addEventListener('click', () => {
+      try {
+        localStorage.setItem('stillwater-note-' + currentTopic, note.value);
+        showToast('Reflection saved on this device.');
+      } catch (e) {
+        showToast('Could not save note in this browser.');
+      }
+    });
+
+    document.getElementById('copyVerse').addEventListener('click', async () => {
+      try {
+        const verseText = topics[currentTopic]?.verse || topics.Bible.verse;
+        await navigator.clipboard.writeText(verseText);
+        showToast('Verse copied.');
+      } catch (e) {
+        showToast('Copy failed.');
+      }
+    });
+
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+
+    (function () {
+      function createRipple(e) {
         const el = e.currentTarget;
         const rect = el.getBoundingClientRect();
-        // support both mouse and touch: use e.clientX/Y or touch points
-        const clientX = (e.clientX !== undefined) ? e.clientX : (e.touches && e.touches[0] && e.touches[0].clientX) || rect.left + rect.width/2;
-        const clientY = (e.clientY !== undefined) ? e.clientY : (e.touches && e.touches[0] && e.touches[0].clientY) || rect.top + rect.height/2;
-        const size = Math.max(rect.width, rect.height) * 0.6; // start size
+        const clientX = (e.clientX !== undefined) ? e.clientX : ((e.touches && e.touches[0] && e.touches[0].clientX) || rect.left + rect.width / 2);
+        const clientY = (e.clientY !== undefined) ? e.clientY : ((e.touches && e.touches[0] && e.touches[0].clientY) || rect.top + rect.height / 2);
+        const size = Math.max(rect.width, rect.height) * 0.6;
         const x = clientX - rect.left;
         const y = clientY - rect.top;
 
@@ -357,12 +827,10 @@
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
         el.appendChild(ripple);
-        // remove when animation ends
-        ripple.addEventListener('animationend', ()=>{ripple.remove()});
+        ripple.addEventListener('animationend', () => ripple.remove());
       }
 
-      // Attach to all tiles (buttons). Use pointerdown to trigger quickly on touch devices.
-      document.querySelectorAll('.tile').forEach(btn=>{
+      document.querySelectorAll('.tile').forEach(btn => {
         btn.addEventListener('pointerdown', createRipple);
       });
     })();
