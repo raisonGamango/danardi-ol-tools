@@ -42,7 +42,7 @@
 
     header{height:86px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;z-index:5}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white)}
-    .brand-mark{width:46px;height:46px;border:1px solid #ffe3a0;border-radius:12px;display:grid;place-items:center;color:var(--gold);font-size:24px;background:linear-gradient(145deg,#fff3c72b,#ffd15b08)}
+    .brand-mark{width:46px;height:46px;border:1px solid #ffe3a0;border-radius:12px;display:grid;place-items:center;color:var(--gold);font-size:24px;background:linear-gradient(145deg,#fff3c72b,#ffd15b0[...]
     .brand-name{font:600 1.4rem "Playfair Display",serif;letter-spacing:.01em}
     .brand-sub{font-size:.68rem;color:#c6d5e7;letter-spacing:.13em;text-transform:uppercase;margin-top:1px}
 
@@ -50,7 +50,7 @@
     .nav a,.nav button{color:#eaf1fb;text-decoration:none;border:0;background:transparent;font:600 .88rem "DM Sans",sans-serif;padding:9px 12px;border-radius:10px}
     .nav a:hover,.nav a.active,.nav button:hover{background:#ffffff17;color:var(--gold)}
 
-    .pill{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #ffe7a2;border-radius:99px;padding:10px 16px;background:linear-gradient(120deg,#ffe8a3,#f7bd44);color:#172039}
+    .pill{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #ffe7a2;border-radius:99px;padding:10px 16px;background:linear-gradient(120deg,#ffe8a3,#f7bd44);color:#[...]
     .pill.secondary{background:#ffffff0b;color:var(--white);border-color:#ffffff38;box-shadow:none}
 
     /* Hero */
@@ -62,7 +62,7 @@
     .hero-lead{font-size:1rem;color:#d7e3f1;max-width:620px;margin-bottom:20px}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
 
-    .hero-art{min-height:320px;position:relative;border-radius:20px;overflow:hidden;border:1px solid #ffe4a033;box-shadow:var(--shadow);background:linear-gradient(90deg,#06152b35,#06152b00),url('assets/sunrise-cro.jpg');background-size:cover;background-position:center}
+    .hero-art{min-height:320px;position:relative;border-radius:20px;overflow:hidden;border:1px solid #ffe4a033;box-shadow:var(--shadow);background:linear-gradient(90deg,#06152b35,#06152b00),url('asset[...]
     .hero-art .verse-card{position:absolute;left:16px;right:16px;bottom:16px;padding:18px;background:rgba(4,18,37,.64);border-radius:14px}
 
     /* Sections */
@@ -72,23 +72,68 @@
 
     /* Responsive tile grid: uses auto-fit for responsiveness */
     .menu-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
-    .tile{--accent:#ffdc86;position:relative;min-height:160px;border-radius:16px;padding:16px;display:flex;flex-direction:column;justify-content:flex-start;gap:10px;border:1px solid rgba(255,221,145,.12);background-color:rgba(255,255,255,0.03);background-size:cover;background-position:center}
+    .tile{--accent:#ffdc86;position:relative;min-height:160px;border-radius:16px;padding:16px;display:flex;flex-direction:column;justify-content:flex-start;gap:10px;border:1px solid rgba(255,221,145,.[...]
     .tile-top{display:flex;justify-content:space-between;align-items:flex-start}
     .tile h3{font:600 1.05rem "Playfair Display",serif;margin:8px 0 6px}
     .tile p{font-size:.88rem;color:#c3d2e2;margin:0}
     .tile .arrow{margin-left:auto}
 
-    .reflection{margin:28px 0 20px;border:1px solid #f4d58c3d;border-radius:16px;padding:18px;display:flex;align-items:center;gap:14px;background:linear-gradient(100deg,#f6c75d12,#ffffff04)}
+    /* --- New: Blur overlay and bubble/ripple effects for tiles --- */
+    /* Ensure tile is a positioned, overflow-hidden element to contain effects */
+    .tile{overflow:hidden;cursor:pointer;transition:transform .16s ease, box-shadow .16s ease}
 
-    footer{display:flex;flex-direction:column;gap:10px;padding:22px 0;border-top:1px solid rgba(255,226,167,.06)}
-    .footer-brand{font-weight:700}
+    /* Blurred overlay that mirrors the tile background (so the image appears softened above)
+       We use ::before to duplicate the background and blur it. Content sits above via z-index. */
+    .tile::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:inherit; /* picks up inline background-image */
+      background-size:cover;
+      background-position:center;
+      filter:blur(10px) saturate(1.05);
+      opacity:.24;
+      transform:scale(1.12);
+      z-index:0;
+      transition:opacity .28s ease, transform .28s ease;
+      pointer-events:none;
+    }
 
-    /* Modal, toast */
-    .toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,25px);opacity:0;pointer-events:none;z-index:20;background:#fff3d1;color:#172039;padding:10px 14px;border-radius:12px;transition:transform .25s,opacity .25s}
-    .toast.show{opacity:1;transform:translate(-50%,0)}
-    .modal-backdrop{position:fixed;inset:0;z-index:30;background:#020817b8;backdrop-filter:blur(9px);display:none;align-items:center;justify-content:center;padding:20px}
-    .modal-backdrop.open{display:flex}
-    .modal{Background:linear-gradient(180deg,#07162b,#051029);padding:18px;border-radius:12px;max-width:560px;width:100%;color:var(--white)}
+    /* Subtle floating bubble on hover (single decorative bubble) */
+    .tile::after{
+      content:"";
+      position:absolute;
+      left:70%;
+      top:24%;
+      width:0;height:0;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 60%);
+      opacity:0;
+      transform:translate(-50%,-50%) translateY(6px) scale(0.6);
+      transition:width .35s ease, height .35s ease, opacity .35s ease, transform .35s ease;
+      z-index:1; /* above blurred bg but below content */
+      pointer-events:none;
+    }
+    .tile:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(3,22,42,0.44)}
+    .tile:hover::after{width:68px;height:68px;opacity:1;transform:translate(-50%,-50%) translateY(-6px) scale(1)}
+
+    /* Guarantee content sits above decorative layers */
+    .tile > *{position:relative;z-index:3}
+
+    /* Click ripple (bubble) — created and removed by JS for multiple ripples */
+    .ripple{
+      position:absolute;
+      border-radius:50%;
+      transform:translate(-50%,-50%) scale(0);
+      background:radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0) 60%);
+      pointer-events:none;
+      z-index:2;
+      animation:ripple .72s cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes ripple{
+      to{transform:translate(-50%,-50%) scale(12);opacity:0}
+    }
 
     /* Accessibility and focus states */
     :focus{outline:3px solid #ffd77944;outline-offset:3px}
@@ -171,7 +216,7 @@
       </section>
 
       <section id="explore" aria-labelledby="explore-title">
-        <div class="section-title"><div><h2 id="explore-title">Explore Your <em>Faith</em></h2><p>Discover powerful tools to grow closer to God, seek His guidance, and live a life of purpose.</p></div></div>
+        <div class="section-title"><div><h2 id="explore-title">Explore Your <em>Faith</em></h2><p>Discover powerful tools to grow closer to God, seek His guidance, and live a life of purpose.</p></div>
         <nav class="menu-grid" aria-label="Spiritual tools">
           <button id="bible" onclick="window.location.href='assets/Baibolan_apsele_professional.html';" class="tile" style="--accent:#ffb900; background-image:url('assets/bible.jpg');">
             <div class="tile-top"><div class="number">01</div><div class="icon">✝</div></div>
@@ -278,7 +323,7 @@
 
     function showToast(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2600)}
 
-    function openTopic(name){currentTopic=name;const t=topics[name]||topics['Bible'];title.textContent=name;desc.textContent=t.description;icon.textContent=t.icon;note.value=localStorage.getItem('stillwater-note-'+name) || '' ;backdrop.classList.add('open');document.body.style.overflow='hidden'}
+    function openTopic(name){currentTopic=name;const t=topics[name]||topics['Bible'];title.textContent=name;desc.textContent=t.description;icon.textContent=t.icon;note.value=localStorage.getItem('stillwater-note-'+currentTopic)||'';backdrop.classList.add('open');document.body.style.overflow='hidden'}
     function closeTopic(){backdrop.classList.remove('open');document.body.style.overflow=''}
 
     document.querySelectorAll('[data-topic]').forEach(el=>el.addEventListener('click',()=>openTopic(el.dataset.topic)));
@@ -286,13 +331,41 @@
     document.getElementById('closeModal').addEventListener('click',closeTopic);
     backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeTopic()});
     document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTopic()});
-    document.getElementById('saveNote').addEventListener('click',()=>{try{localStorage.setItem('stillwater-note-'+currentTopic,note.value);showToast('Reflection saved on this device.')}catch(e){showToast('Unable to save locally.')}});
-    document.getElementById('copyVerse').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.querySelector('.verse-card blockquote').textContent);showToast('Verse copied to clipboard.')}catch(e){showToast('Copy not supported on this device.')}});
+    document.getElementById('saveNote').addEventListener('click',()=>{try{localStorage.setItem('stillwater-note-'+currentTopic,note.value);showToast('Reflection saved on this device.')}catch(e){showToast('Unable to save reflection.')}});
+    document.getElementById('copyVerse').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.querySelector('.verse-card blockquote').textContent);showToast('Verse copied to clipboard.')}catch(e){showToast('Unable to copy verse.')}});
 
     // Service worker registration (only when served over https)
     if('serviceWorker' in navigator && location.protocol.startsWith('http')){
       window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
     }
+
+    // --- New: ripple (bubble) effect on click for .tile elements ---
+    (function(){
+      function createRipple(e){
+        const el = e.currentTarget;
+        const rect = el.getBoundingClientRect();
+        // support both mouse and touch: use e.clientX/Y or touch points
+        const clientX = (e.clientX !== undefined) ? e.clientX : (e.touches && e.touches[0] && e.touches[0].clientX) || rect.left + rect.width/2;
+        const clientY = (e.clientY !== undefined) ? e.clientY : (e.touches && e.touches[0] && e.touches[0].clientY) || rect.top + rect.height/2;
+        const size = Math.max(rect.width, rect.height) * 0.6; // start size
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        el.appendChild(ripple);
+        // remove when animation ends
+        ripple.addEventListener('animationend', ()=>{ripple.remove()});
+      }
+
+      // Attach to all tiles (buttons). Use pointerdown to trigger quickly on touch devices.
+      document.querySelectorAll('.tile').forEach(btn=>{
+        btn.addEventListener('pointerdown', createRipple);
+      });
+    })();
   </script>
 </body>
 </html>
