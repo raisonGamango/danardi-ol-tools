@@ -313,11 +313,33 @@
       transition: opacity .28s ease, transform .28s ease;
       pointer-events: none;
     }
+
+    /* Improved tile headings for better visibility */
+    .tile h3 {
+      font: 700 1.25rem "Playfair Display", serif; /* larger & bolder */
+      margin: 6px 0 8px;
+      color: var(--gold); /* gold color for high contrast */
+      text-shadow: 0 10px 30px rgba(3,17,31,0.95), 0 3px 6px rgba(0,0,0,0.6); /* stronger shadow */
+      letter-spacing: 0;
+      position: relative;
+      z-index: 3;
+    }
+
+    .tile p {
+      font-size: .88rem;
+      color: #cfe6f9; /* slightly lighter copy for contrast */
+      margin: 0;
+      text-shadow: 0 6px 18px rgba(3,17,31,0.7);
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Keep previous generic rule for backwards compatibility */
     .tile h3,
     .tile p {
       color: #ffffff !important;
-      text-shadow: 0 6px 18px rgba(3,17,31,0.85), 0 1px 2px rgba(0,0,0,0.6);
     }
+
     .tile::after {
       content: "";
       position: absolute;
@@ -366,15 +388,6 @@
       height: 30px;
       display: grid;
       place-items: center;
-    }
-    .tile h3 {
-      font: 600 1.05rem "Playfair Display", serif;
-      margin: 8px 0 6px;
-    }
-    .tile p {
-      font-size: .88rem;
-      color: #c3d2e2;
-      margin: 0;
     }
     .tile .arrow {
       margin-left: auto;
@@ -669,7 +682,7 @@
       </section>
 
       <section id="explore" aria-labelledby="explore-title">
-        <div class="section-title"><div><h2 id="explore-title">Explore Your <em>Faith</em></h2><p>Discover powerful tools to grow closer to God, seek His guidance, and live a life of purpose.</p></div></div>
+        <div class="section-title"><div><h2 id="explore-title">Explore Your <em>Faith</em></h2><p>Discover powerful tools to grow closer to God, seek His guidance, and live a life of purpose.</p></div>
         <nav class="menu-grid" aria-label="Spiritual tools">
           <button id="bible" onclick="window.location.href='assets/Baibolan_apsele_professional.html';" class="tile" style="--accent:#ffb900; background-image:url('assets/bible.jpg');">
             <div class="tile-top"><div class="number">01</div><div class="icon">✝</div></div>
