@@ -271,7 +271,8 @@
     }
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      /* Force a fixed 3-column layout */
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
     .tile {
@@ -675,7 +676,12 @@
       </section>
 
       <section id="explore" aria-labelledby="explore-title">
-        <div class="section-title"><div><h2 id="explore-title">Explore Your <em>Faith</em></h2><p>Discover powerful tools to grow closer to God, seek His guidance, and live a life of purpose.</p></div>
+        <div class="section-title">
+          <div>
+            <h2 id="explore-title">Explore Your <em>Faith</em></h2>
+            <p>Discover powerful tools to grow closer to God, seek His guidance, and live a life of purpose.</p>
+          </div>
+        </div>
         <nav class="menu-grid" aria-label="Spiritual tools">
           <button id="bible" onclick="window.location.href='assets/Baibolan_apsele_professional.html';" class="tile" style="--accent:#ffb900; background-image:url('assets/bible.jpg');">
             <div class="tile-top"><div class="number">01</div><div class="icon">✝</div></div>
